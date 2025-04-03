@@ -1,4 +1,3 @@
-
 // Mock data for the freelancing platform
 
 export interface Job {
@@ -23,16 +22,17 @@ export interface Freelancer {
   avatar: string;
 }
 
+// Let's add course categories to jobCategories
 export const jobCategories = [
-  "Web Development",
-  "Mobile Development",
-  "Design",
-  "Writing",
-  "Marketing",
-  "Video & Animation",
-  "Admin Support",
-  "Customer Service",
-  "All Categories"
+  'All Categories', 
+  'Web Development', 
+  'Design', 
+  'Marketing', 
+  'Data Science', 
+  'Mobile Development',
+  'Writing & Translation',
+  'Video & Animation',
+  'Security'
 ];
 
 export const jobListings: Job[] = [
