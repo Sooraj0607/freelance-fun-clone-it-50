@@ -23,9 +23,10 @@ export interface CourseType {
 interface CourseCardProps {
   course: CourseType;
   enrolled?: boolean;
+  onClick?: () => void;
 }
 
-const CourseCard: React.FC<CourseCardProps> = ({ course, enrolled = false }) => {
+const CourseCard: React.FC<CourseCardProps> = ({ course, enrolled = false, onClick }) => {
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow h-full flex flex-col">
       <div className="relative h-40 bg-gray-100">
@@ -57,8 +58,8 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, enrolled = false }) => 
         {enrolled && course.progress !== undefined && (
           <div className="mb-4">
             <div className="flex justify-between text-sm mb-1">
-              <span>Progress</span>
-              <span>{course.progress}%</span>
+              <span className="font-medium">Progress</span>
+              <span className="text-primary font-medium">{course.progress}%</span>
             </div>
             <Progress value={course.progress} className="h-2" />
           </div>
@@ -91,7 +92,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, enrolled = false }) => 
           )}
         </div>
         
-        <Button variant={enrolled ? "outline" : "default"} size="sm">
+        <Button 
+          variant={enrolled ? "outline" : "default"} 
+          size="sm"
+          onClick={onClick}
+        >
           {enrolled ? "Continue" : "Enroll Now"}
         </Button>
       </CardFooter>

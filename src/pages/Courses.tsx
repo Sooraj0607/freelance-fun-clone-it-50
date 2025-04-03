@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import SearchBar from '@/components/SearchBar';
 import CategoryFilter from '@/components/CategoryFilter';
 import { coursesData, enrolledCoursesData } from '@/data/coursesData';
-import { BookOpen, Graduation, Users } from 'lucide-react';
+import { BookOpen, GraduationCap, Users } from 'lucide-react';
 
 const courseCategories = ['All Categories', 'Development', 'Design', 'Marketing', 'Data Science', 'Security'];
 
@@ -67,7 +66,7 @@ const Courses = () => {
             </div>
             <div className="flex flex-col items-center">
               <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 text-primary mb-4">
-                <Graduation className="h-6 w-6" />
+                <GraduationCap className="h-6 w-6" />
               </div>
               <h3 className="text-2xl font-bold mb-1">5,000+</h3>
               <p className="text-gray-600">Certificates Issued</p>
