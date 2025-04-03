@@ -3,13 +3,15 @@ import React from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface SearchBarProps {
   placeholder?: string;
   onSearch: (query: string) => void;
+  className?: string;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search jobs...", onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search jobs...", onSearch, className }) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   
   const handleSearch = (e: React.FormEvent) => {
@@ -18,7 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search jobs...", o
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex w-full max-w-md">
+    <form onSubmit={handleSearch} className={cn("flex w-full max-w-md", className)}>
       <div className="relative flex-grow">
         <Input
           type="text"
