@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Bell, MessageSquare, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-primary font-bold text-2xl">WorkBridge</span>
+              <Logo />
             </Link>
           </div>
 

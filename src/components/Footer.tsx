@@ -3,6 +3,7 @@ import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -11,9 +12,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1 - About */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold mb-4">WorkBridge</h3>
+            <Logo textClassName="text-white" />
             <p className="text-gray-400">
-              Connecting top talent with amazing opportunities worldwide since 2023.
+              Connecting top semiconductor talent with amazing opportunities worldwide since 2023.
             </p>
             <div className="flex space-x-4 mt-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -35,7 +36,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">For Clients</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Find Freelancers</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Find Specialists</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Post a Job</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Enterprise Solutions</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
@@ -45,13 +46,13 @@ const Footer = () => {
 
           {/* Column 3 - For Freelancers */}
           <div>
-            <h3 className="font-semibold mb-4">For Freelancers</h3>
+            <h3 className="font-semibold mb-4">For Specialists</h3>
             <ul className="space-y-3">
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Find Work</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Projects</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Community</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Freelancer Forum</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Specialist Forum</a></li>
             </ul>
           </div>
 
@@ -75,7 +76,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm">
-              © 2023 WorkBridge. All rights reserved.
+              © 2023 SemiXpertz. All rights reserved.
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
