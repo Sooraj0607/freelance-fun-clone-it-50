@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Bell, MessageSquare, User } from 'lucide-react';
+import { Menu, X, Bell, MessageSquare, User, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
 
@@ -23,6 +23,7 @@ const Navbar = () => {
             <Link to="/" className="text-gray-600 hover:text-primary transition-colors">Home</Link>
             <Link to="/projects" className="text-gray-600 hover:text-primary transition-colors">Projects</Link>
             <Link to="/courses" className="text-gray-600 hover:text-primary transition-colors">Courses</Link>
+            <Link to="/events" className="text-gray-600 hover:text-primary transition-colors">Events</Link>
             <a href="/#how-it-works" className="text-gray-600 hover:text-primary transition-colors">How it Works</a>
           </div>
 
@@ -64,6 +65,7 @@ const Navbar = () => {
             <Link to="/" className="py-2 text-gray-600 hover:text-primary transition-colors">Home</Link>
             <Link to="/projects" className="py-2 text-gray-600 hover:text-primary transition-colors">Projects</Link>
             <Link to="/courses" className="py-2 text-gray-600 hover:text-primary transition-colors">Courses</Link>
+            <Link to="/events" className="py-2 text-gray-600 hover:text-primary transition-colors">Events</Link>
             <a href="/#how-it-works" className="py-2 text-gray-600 hover:text-primary transition-colors">How it Works</a>
             <Link to="/profile" className="py-2 text-gray-600 hover:text-primary transition-colors">Profile</Link>
             <div className="flex space-x-2 py-2">

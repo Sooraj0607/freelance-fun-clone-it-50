@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { Calendar } from 'lucide-react';
 
 const CtaSection = () => {
   return (
@@ -14,6 +16,12 @@ const CtaSection = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg">Find Work</Button>
             <Button size="lg" variant="outline">Hire Talent</Button>
+            <Button size="lg" variant="secondary" asChild>
+              <Link to="/events">
+                <Calendar className="mr-2 h-5 w-5" />
+                Join Events
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
