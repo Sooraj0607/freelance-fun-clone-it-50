@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Calendar } from 'lucide-react';
+import { Calendar, Presentation } from 'lucide-react';
 
 const CtaSection = () => {
   return (
@@ -20,6 +20,12 @@ const CtaSection = () => {
               <Link to="/events">
                 <Calendar className="mr-2 h-5 w-5" />
                 Join Events
+              </Link>
+            </Button>
+            <Button size="lg" variant="secondary" asChild>
+              <Link to="/pitch-deck">
+                <Presentation className="mr-2 h-5 w-5" />
+                View Pitch Deck
               </Link>
             </Button>
           </div>
