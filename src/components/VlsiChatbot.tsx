@@ -1,10 +1,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, RefreshCw } from 'lucide-react';
+import { Send, Bot, User, RefreshCw, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 
 interface Message {
@@ -51,6 +50,10 @@ const VlsiChatbot = () => {
       keywords: ['synthesis', 'rtl synthesis'],
       response: "RTL synthesis transforms RTL description (in Verilog/VHDL) into a gate-level netlist. Modern synthesis tools optimize the design for area, power, and timing while preserving the functionality described in the RTL.",
     },
+    {
+      keywords: ['screening test', 'assessment', 'skill test'],
+      response: "SemiXpertz offers VLSI screening tests to evaluate your semiconductor design skills. Visit our Events page to find upcoming screening tests for various specializations like analog design, digital design, verification, and physical design.",
+    },
   ];
 
   const generateResponse = (query: string) => {
@@ -75,7 +78,7 @@ const VlsiChatbot = () => {
       
       // Default response if no keywords match
       setMessages(prev => [...prev, {
-        content: "That's an interesting question about VLSI! In a professional implementation, I would connect to an AI model that specializes in semiconductor knowledge. For now, please try asking about Verilog, timing analysis, power consumption, FPGAs, physical design, or synthesis.",
+        content: "That's an interesting question about VLSI! In a professional implementation, I would connect to an AI model that specializes in semiconductor knowledge. For now, please try asking about Verilog, timing analysis, power consumption, FPGAs, physical design, synthesis, or screening tests.",
         role: 'assistant',
         timestamp: new Date(),
       }]);
@@ -120,7 +123,10 @@ const VlsiChatbot = () => {
     <Card className="flex flex-col h-[500px] border rounded-lg overflow-hidden">
       <div className="bg-primary text-primary-foreground p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <Bot size={20} />
+          <div className="relative">
+            <Cpu size={22} className="animate-pulse" />
+            <Bot size={18} className="absolute -bottom-1 -right-1" />
+          </div>
           <h3 className="font-semibold">VLSI Expert Assistant</h3>
         </div>
         <Button variant="ghost" size="sm" onClick={handleReset} className="text-primary-foreground">
@@ -146,7 +152,10 @@ const VlsiChatbot = () => {
                 {message.role === 'user' ? (
                   <User size={16} />
                 ) : (
-                  <Bot size={16} />
+                  <div className="relative">
+                    <Cpu size={16} />
+                    <Bot size={12} className="absolute -bottom-1 -right-1" />
+                  </div>
                 )}
                 <span className="text-xs opacity-70">
                   {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

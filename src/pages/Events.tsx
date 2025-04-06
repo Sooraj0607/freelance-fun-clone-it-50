@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Code, Trophy, Users, UserPlus, Check, Clock } from 'lucide-react';
 import VlsiChatbot from '@/components/VlsiChatbot';
+import ScreeningTestPortal from '@/components/ScreeningTestPortal';
 
 interface EventProps {
   id: string;
@@ -26,6 +27,7 @@ interface EventProps {
 
 const EventsPage = () => {
   const [activeTab, setActiveTab] = useState<string>('all');
+  const [activeSectionTab, setActiveSectionTab] = useState<string>('events');
   
   const events: EventProps[] = [
     {
@@ -125,9 +127,9 @@ const EventsPage = () => {
                 and connect with industry professionals.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                  <UserPlus className="mr-2 h-5 w-5" />
-                  Register for Events
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90" onClick={() => setActiveSectionTab('screening')}>
+                  <Check className="mr-2 h-5 w-5" />
+                  Take Screening Tests
                 </Button>
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                   <Trophy className="mr-2 h-5 w-5" />
@@ -142,97 +144,114 @@ const EventsPage = () => {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-8">
+              <Tabs defaultValue="events" value={activeSectionTab} onValueChange={setActiveSectionTab} className="mb-8">
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-3xl font-bold">Upcoming Events</h2>
+                  <h2 className="text-3xl font-bold">
+                    {activeSectionTab === 'events' ? 'Upcoming Events' : 'Screening Tests'}
+                  </h2>
                   <TabsList>
-                    <TabsTrigger value="all">All Events</TabsTrigger>
-                    <TabsTrigger value="hackathon">Hackathons</TabsTrigger>
+                    <TabsTrigger value="events">Events</TabsTrigger>
                     <TabsTrigger value="screening">Screening Tests</TabsTrigger>
-                    <TabsTrigger value="workshop">Workshops</TabsTrigger>
                   </TabsList>
                 </div>
                 
-                <TabsContent value={activeTab} className="space-y-6">
-                  {filteredEvents.length === 0 ? (
-                    <div className="text-center py-12 bg-gray-50 rounded-lg">
-                      <p className="text-gray-500">No events found in this category.</p>
+                <TabsContent value="events">
+                  <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab}>
+                    <div className="flex justify-end mb-6">
+                      <TabsList>
+                        <TabsTrigger value="all">All Events</TabsTrigger>
+                        <TabsTrigger value="hackathon">Hackathons</TabsTrigger>
+                        <TabsTrigger value="screening">Screening Tests</TabsTrigger>
+                        <TabsTrigger value="workshop">Workshops</TabsTrigger>
+                      </TabsList>
                     </div>
-                  ) : (
-                    filteredEvents.map((event) => (
-                      <Card key={event.id} className="overflow-hidden transition-all hover:shadow-md">
-                        <CardHeader className="flex flex-row items-start justify-between">
-                          <div>
-                            <div className="flex items-center gap-2 mb-2">
-                              {getEventTypeIcon(event.type)}
-                              <Badge variant={event.type === 'hackathon' ? 'default' : event.type === 'screening' ? 'secondary' : 'outline'}>
-                                {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-                              </Badge>
-                              {event.registrationOpen ? (
-                                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                                  Registration Open
-                                </Badge>
-                              ) : (
-                                <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
-                                  Coming Soon
-                                </Badge>
-                              )}
-                            </div>
-                            <CardTitle className="text-xl">{event.title}</CardTitle>
-                            <CardDescription className="mt-2">{event.description}</CardDescription>
-                          </div>
-                        </CardHeader>
-                        
-                        <CardContent>
-                          <div className="flex flex-wrap gap-y-3 gap-x-8 text-sm">
-                            <div className="flex items-center gap-2">
-                              <Calendar className="h-4 w-4 text-gray-500" />
-                              <span>{event.date}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Clock className="h-4 w-4 text-gray-500" />
-                              <span>{event.duration}</span>
-                            </div>
-                            {event.participants && (
-                              <div className="flex items-center gap-2">
-                                <Users className="h-4 w-4 text-gray-500" />
-                                <span>{event.participants}/{event.maxParticipants} participants</span>
-                              </div>
-                            )}
-                            {event.prize && (
-                              <div className="flex items-center gap-2">
-                                <Trophy className="h-4 w-4 text-gray-500" />
-                                <span>Prize: {event.prize}</span>
-                              </div>
-                            )}
-                          </div>
-                          
-                          {event.skills && (
-                            <div className="mt-4">
-                              <p className="text-sm text-gray-500 mb-2">Skills:</p>
-                              <div className="flex flex-wrap gap-2">
-                                {event.skills.map((skill, idx) => (
-                                  <Badge key={idx} variant="outline" className="bg-gray-50">
-                                    {skill}
+                    
+                    <div className="space-y-6">
+                      {filteredEvents.length === 0 ? (
+                        <div className="text-center py-12 bg-gray-50 rounded-lg">
+                          <p className="text-gray-500">No events found in this category.</p>
+                        </div>
+                      ) : (
+                        filteredEvents.map((event) => (
+                          <Card key={event.id} className="overflow-hidden transition-all hover:shadow-md">
+                            <CardHeader className="flex flex-row items-start justify-between">
+                              <div>
+                                <div className="flex items-center gap-2 mb-2">
+                                  {getEventTypeIcon(event.type)}
+                                  <Badge variant={event.type === 'hackathon' ? 'default' : event.type === 'screening' ? 'secondary' : 'outline'}>
+                                    {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
                                   </Badge>
-                                ))}
+                                  {event.registrationOpen ? (
+                                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                                      Registration Open
+                                    </Badge>
+                                  ) : (
+                                    <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
+                                      Coming Soon
+                                    </Badge>
+                                  )}
+                                </div>
+                                <CardTitle className="text-xl">{event.title}</CardTitle>
+                                <CardDescription className="mt-2">{event.description}</CardDescription>
                               </div>
-                            </div>
-                          )}
-                        </CardContent>
-                        
-                        <CardFooter className="flex justify-between border-t bg-gray-50/50 p-4">
-                          <p className="text-sm text-gray-500">Location: {event.location}</p>
-                          <Button 
-                            disabled={!event.registrationOpen}
-                            variant={event.registrationOpen ? "default" : "outline"}
-                          >
-                            {event.registrationOpen ? 'Register Now' : 'Coming Soon'}
-                          </Button>
-                        </CardFooter>
-                      </Card>
-                    ))
-                  )}
+                            </CardHeader>
+                            
+                            <CardContent>
+                              <div className="flex flex-wrap gap-y-3 gap-x-8 text-sm">
+                                <div className="flex items-center gap-2">
+                                  <Calendar className="h-4 w-4 text-gray-500" />
+                                  <span>{event.date}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Clock className="h-4 w-4 text-gray-500" />
+                                  <span>{event.duration}</span>
+                                </div>
+                                {event.participants && (
+                                  <div className="flex items-center gap-2">
+                                    <Users className="h-4 w-4 text-gray-500" />
+                                    <span>{event.participants}/{event.maxParticipants} participants</span>
+                                  </div>
+                                )}
+                                {event.prize && (
+                                  <div className="flex items-center gap-2">
+                                    <Trophy className="h-4 w-4 text-gray-500" />
+                                    <span>Prize: {event.prize}</span>
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {event.skills && (
+                                <div className="mt-4">
+                                  <p className="text-sm text-gray-500 mb-2">Skills:</p>
+                                  <div className="flex flex-wrap gap-2">
+                                    {event.skills.map((skill, idx) => (
+                                      <Badge key={idx} variant="outline" className="bg-gray-50">
+                                        {skill}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </CardContent>
+                            
+                            <CardFooter className="flex justify-between border-t bg-gray-50/50 p-4">
+                              <p className="text-sm text-gray-500">Location: {event.location}</p>
+                              <Button 
+                                disabled={!event.registrationOpen}
+                                variant={event.registrationOpen ? "default" : "outline"}
+                              >
+                                {event.registrationOpen ? 'Register Now' : 'Coming Soon'}
+                              </Button>
+                            </CardFooter>
+                          </Card>
+                        ))
+                      )}
+                    </div>
+                  </Tabs>
+                </TabsContent>
+                
+                <TabsContent value="screening">
+                  <ScreeningTestPortal />
                 </TabsContent>
               </Tabs>
               
