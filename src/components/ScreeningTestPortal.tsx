@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -13,7 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
-import { useMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ScreeningTest {
   id: string;
@@ -98,7 +97,7 @@ const ScreeningTestPortal = () => {
   const [activeTab, setActiveTab] = useState<string>('all');
   const [selectedTest, setSelectedTest] = useState<ScreeningTest | null>(null);
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
