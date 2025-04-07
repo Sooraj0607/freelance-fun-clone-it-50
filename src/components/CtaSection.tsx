@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Calendar, Presentation, Users } from 'lucide-react';
+import { Calendar, Users } from 'lucide-react';
 
 const CtaSection = () => {
   return (
@@ -30,12 +30,6 @@ const CtaSection = () => {
               <Link to="/community">
                 <Users className="mr-2 h-5 w-5" />
                 Join Community
-              </Link>
-            </Button>
-            <Button size="lg" variant="secondary" asChild className="transition-all duration-300">
-              <Link to="/pitch-deck">
-                <Presentation className="mr-2 h-5 w-5" />
-                View Pitch Deck
               </Link>
             </Button>
           </div>

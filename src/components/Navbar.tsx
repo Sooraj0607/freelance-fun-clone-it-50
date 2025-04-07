@@ -7,7 +7,6 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
@@ -83,12 +82,6 @@ const Navbar = () => {
                             <div className="font-medium">Chat Groups</div>
                             <div className="text-sm text-gray-500">Join specialized communities</div>
                           </div>
-                        </div>
-                      </Link>
-                      <Link to="/pitch-deck" className="flex p-3 hover:bg-gray-50 rounded-md col-span-2">
-                        <div className="w-full flex justify-between items-center">
-                          <div className="font-medium">View our Pitch Deck</div>
-                          <Button variant="outline" size="sm">View</Button>
                         </div>
                       </Link>
                     </div>
