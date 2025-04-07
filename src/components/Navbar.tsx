@@ -1,8 +1,17 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Bell, MessageSquare, User, Calendar } from 'lucide-react';
+import { Menu, X, Bell, MessageSquare, User, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { 
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import Logo from './Logo';
 
 const Navbar = () => {
@@ -19,12 +28,74 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-600 hover:text-primary transition-colors">Home</Link>
-            <Link to="/projects" className="text-gray-600 hover:text-primary transition-colors">Projects</Link>
-            <Link to="/courses" className="text-gray-600 hover:text-primary transition-colors">Courses</Link>
-            <Link to="/events" className="text-gray-600 hover:text-primary transition-colors">Events</Link>
-            <a href="/#how-it-works" className="text-gray-600 hover:text-primary transition-colors">How it Works</a>
+          <div className="hidden md:flex items-center space-x-4">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <Link to="/" className="text-gray-600 hover:text-primary transition-colors px-3 py-2">
+                    Home
+                  </Link>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="bg-transparent hover:bg-gray-50">Work</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid grid-cols-2 gap-3 p-4 w-[400px]">
+                      <Link to="/projects" className="flex p-3 hover:bg-gray-50 rounded-md">
+                        <div>
+                          <div className="font-medium">Projects</div>
+                          <div className="text-sm text-gray-500">Find and bid on semiconductor projects</div>
+                        </div>
+                      </Link>
+                      <a href="/#how-it-works" className="flex p-3 hover:bg-gray-50 rounded-md">
+                        <div>
+                          <div className="font-medium">How it Works</div>
+                          <div className="text-sm text-gray-500">Learn about our platform process</div>
+                        </div>
+                      </a>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <Link to="/courses" className="text-gray-600 hover:text-primary transition-colors px-3 py-2">
+                    Courses
+                  </Link>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="bg-transparent hover:bg-gray-50">Community</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid grid-cols-2 gap-3 p-4 w-[400px]">
+                      <Link to="/events" className="flex p-3 hover:bg-gray-50 rounded-md">
+                        <div className="flex">
+                          <Calendar className="h-5 w-5 mr-2 text-blue-500" />
+                          <div>
+                            <div className="font-medium">Events</div>
+                            <div className="text-sm text-gray-500">Webinars and conferences</div>
+                          </div>
+                        </div>
+                      </Link>
+                      <Link to="/community" className="flex p-3 hover:bg-gray-50 rounded-md">
+                        <div className="flex">
+                          <Users className="h-5 w-5 mr-2 text-indigo-500" />
+                          <div>
+                            <div className="font-medium">Chat Groups</div>
+                            <div className="text-sm text-gray-500">Join specialized communities</div>
+                          </div>
+                        </div>
+                      </Link>
+                      <Link to="/pitch-deck" className="flex p-3 hover:bg-gray-50 rounded-md col-span-2">
+                        <div className="w-full flex justify-between items-center">
+                          <div className="font-medium">View our Pitch Deck</div>
+                          <Button variant="outline" size="sm">View</Button>
+                        </div>
+                      </Link>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
           {/* Desktop CTA and User Profile */}
@@ -66,6 +137,11 @@ const Navbar = () => {
             <Link to="/projects" className="py-2 text-gray-600 hover:text-primary transition-colors">Projects</Link>
             <Link to="/courses" className="py-2 text-gray-600 hover:text-primary transition-colors">Courses</Link>
             <Link to="/events" className="py-2 text-gray-600 hover:text-primary transition-colors">Events</Link>
+            <Link to="/community" className="py-2 text-gray-600 hover:text-primary transition-colors flex items-center">
+              <Users className="h-5 w-5 mr-2 text-indigo-500" />
+              Chat Groups
+              <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">New</span>
+            </Link>
             <a href="/#how-it-works" className="py-2 text-gray-600 hover:text-primary transition-colors">How it Works</a>
             <Link to="/profile" className="py-2 text-gray-600 hover:text-primary transition-colors">Profile</Link>
             <div className="flex space-x-2 py-2">

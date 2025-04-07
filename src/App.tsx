@@ -9,6 +9,8 @@ import Courses from "./pages/Courses";
 import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import Events from "./pages/Events";
+import Community from "./pages/Community";
+import PitchDeck from "./components/PitchDeck";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/pitch-deck" element={<PitchDeck />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
