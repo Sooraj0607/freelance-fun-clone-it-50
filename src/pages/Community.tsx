@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CommunityGroups from '@/components/CommunityGroups';
+import VlsiChatbot from '@/components/VlsiChatbot';
 
 const Community = () => {
   return (
@@ -17,7 +18,20 @@ const Community = () => {
             </p>
           </div>
         </div>
-        <CommunityGroups />
+        
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <h2 className="heading-md mb-6">Join Our Community</h2>
+              <CommunityGroups />
+            </div>
+            
+            <div>
+              <h2 className="heading-md mb-6">Ask the VLSI Expert</h2>
+              <VlsiChatbot />
+            </div>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
