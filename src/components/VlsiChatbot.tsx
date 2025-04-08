@@ -26,15 +26,15 @@ const initialMessages: Message[] = [
 
 const sampleResponses: Record<string, string> = {
   'rtl': 'RTL (Register Transfer Level) is a design abstraction used in hardware description languages like Verilog and VHDL. It represents the flow of digital signals between hardware registers and the logical operations performed on those signals.',
-  'verilog': 'Verilog is a hardware description language (HDL) used to model electronic systems. It's most commonly used in the design and verification of digital circuits at the register-transfer level of abstraction.',
+  'verilog': 'Verilog is a hardware description language (HDL) used to model electronic systems. It\'s most commonly used in the design and verification of digital circuits at the register-transfer level of abstraction.',
   'verification': 'Verification in semiconductor design is the process of ensuring that a design correctly implements its specification. Common methodologies include simulation, formal verification, and emulation.',
-  'uvm': 'UVM (Universal Verification Methodology) is a standardized methodology for verifying integrated circuit designs. It's based on SystemVerilog and provides a framework for creating flexible, reusable verification components.',
+  'uvm': 'UVM (Universal Verification Methodology) is a standardized methodology for verifying integrated circuit designs. It\'s based on SystemVerilog and provides a framework for creating flexible, reusable verification components.',
   'asic': 'An ASIC (Application-Specific Integrated Circuit) is an integrated circuit customized for a particular use, rather than intended for general-purpose use. ASICs are typically optimized for power, performance, and area for their specific application.',
   'fpga': 'An FPGA (Field-Programmable Gate Array) is an integrated circuit designed to be configured by a customer or designer after manufacturing. FPGAs contain programmable logic blocks and a hierarchy of reconfigurable interconnects.',
   'physical design': 'Physical design in VLSI involves converting a logical design description (netlist) into a physical layout. Key steps include floorplanning, placement, clock tree synthesis, and routing.',
   'moore\'s law': 'Moore\'s Law is an observation made by Gordon Moore that the number of transistors on a microchip doubles approximately every two years, though the cost of computers is halved. This observation has largely held true since the 1970s, though it\'s showing signs of slowing down.',
   'static timing analysis': 'Static Timing Analysis (STA) is a method of validating the timing performance of a design by checking all possible paths for timing violations. It\'s performed without requiring simulation of the full design.',
-  'systemverilog': 'SystemVerilog is a hardware description and verification language used to model, design, simulate, test, and implement electronic systems. It\'s an extension of Verilog with additional verification features.',
+  'systemverilog': 'SystemVerilog is a hardware description and verification language used to model, design, simulate, test, and implement electronic systems. It\'s an extension of Verilog with additional verification features.'
 };
 
 const VlsiChatbot = () => {
