@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Zap, Users, Shield, Cpu, Microchip, Circuit } from 'lucide-react';
+import { Zap, Users, Shield, Cpu, Chip, CircuitBoard } from 'lucide-react';
 
 interface BenefitsSectionProps {
   visibleSections: {

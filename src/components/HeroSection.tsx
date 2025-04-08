@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Search, Zap, Code, Cpu, Database, Layers, Microchip, Circuit } from 'lucide-react';
+import { Search, Zap, Code, Cpu, Chip, CircuitBoard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -121,13 +121,13 @@ const HeroSection = () => {
             </div>
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
-                <Microchip className="h-6 w-6 text-primary" />
+                <Chip className="h-6 w-6 text-primary" />
               </div>
               <span className="text-sm mt-2 text-gray-600">Analog IC</span>
             </div>
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
-                <Layers className="h-6 w-6 text-primary" />
+                <CircuitBoard className="h-6 w-6 text-primary" />
               </div>
               <span className="text-sm mt-2 text-gray-600">Layout Design</span>
             </div>

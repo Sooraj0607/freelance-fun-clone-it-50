@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Cpu, ChipIcon, Circuit, Microchip } from 'lucide-react';
+import { Cpu, CircuitBoard, Chip } from 'lucide-react';
 
 interface CategorySectionProps {
   visibleSections: {
@@ -11,8 +11,8 @@ interface CategorySectionProps {
 const CategorySection = ({ visibleSections }: CategorySectionProps) => {
   const categories = [
     { name: 'IC Design', icon: Cpu, jobs: 145 },
-    { name: 'Verification', icon: Microchip, jobs: 128 },
-    { name: 'Physical Design', icon: Circuit, jobs: 113 },
+    { name: 'Verification', icon: CircuitBoard, jobs: 128 },
+    { name: 'Physical Design', icon: Chip, jobs: 113 },
     { name: 'Embedded Systems', icon: Cpu, jobs: 97 },
   ];
 
@@ -28,7 +28,7 @@ const CategorySection = ({ visibleSections }: CategorySectionProps) => {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 text-primary mb-4">
-                <Cpu className="h-6 w-6" />
+                {React.createElement(category.icon, { className: "h-6 w-6" })}
               </div>
               <h3 className="font-semibold mb-2">{category.name}</h3>
               <p className="text-sm text-gray-600">{category.jobs}+ jobs</p>

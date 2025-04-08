@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Calendar, Users, Cpu, Microchip } from 'lucide-react';
+import { Calendar, Users, Cpu, Chip, CircuitBoard } from 'lucide-react';
 
 const CtaSection = () => {
   return (
