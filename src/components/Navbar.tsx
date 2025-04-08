@@ -12,9 +12,11 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Logo from './Logo';
+import LoginDialog from './LoginDialog';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -93,8 +95,10 @@ const Navbar = () => {
 
           {/* Desktop CTA and User Profile */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">Log In</Button>
-            <Button size="sm">Sign Up</Button>
+            <Button variant="outline" size="sm" onClick={() => setIsLoginOpen(true)}>Log In</Button>
+            <Button size="sm" onClick={() => {
+              setIsLoginOpen(true);
+            }}>Sign Up</Button>
             <div className="flex items-center space-x-2 ml-2">
               <Button variant="ghost" size="icon">
                 <MessageSquare className="h-5 w-5" />
@@ -138,8 +142,14 @@ const Navbar = () => {
             <a href="/#how-it-works" className="py-2 text-gray-600 hover:text-primary transition-colors">How it Works</a>
             <Link to="/profile" className="py-2 text-gray-600 hover:text-primary transition-colors">Profile</Link>
             <div className="flex space-x-2 py-2">
-              <Button variant="outline" size="sm" className="flex-1">Log In</Button>
-              <Button size="sm" className="flex-1">Sign Up</Button>
+              <Button variant="outline" size="sm" className="flex-1" onClick={() => {
+                setIsMenuOpen(false);
+                setIsLoginOpen(true);
+              }}>Log In</Button>
+              <Button size="sm" className="flex-1" onClick={() => {
+                setIsMenuOpen(false);
+                setIsLoginOpen(true);
+              }}>Sign Up</Button>
             </div>
             <div className="flex justify-between py-2">
               <Button variant="ghost" size="icon">
@@ -157,6 +167,12 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
+      {/* Login Dialog */}
+      <LoginDialog 
+        isOpen={isLoginOpen} 
+        onClose={() => setIsLoginOpen(false)} 
+      />
     </nav>
   );
 };
