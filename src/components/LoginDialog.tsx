@@ -35,7 +35,7 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
     // For demo purposes, we'll just show a success message
     toast({
       title: isLogin ? "Logged in successfully" : "Account created successfully",
-      description: isLogin ? "Welcome back!" : "You can now login with your credentials",
+      description: isLogin ? "Welcome to SemiXpertz! Access your semiconductor projects." : "You can now login to access semiconductor talent and opportunities.",
     });
     
     onClose();
@@ -52,9 +52,9 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{isLogin ? "Login" : "Create an Account"}</DialogTitle>
+          <DialogTitle>{isLogin ? "Login to SemiXpertz" : "Join the Semiconductor Community"}</DialogTitle>
           <DialogDescription>
-            {isLogin ? "Enter your credentials to access your account." : "Fill in the information below to create your account."}
+            {isLogin ? "Enter your credentials to access semiconductor talent and opportunities." : "Create an account to connect with top semiconductor professionals and companies."}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
@@ -121,7 +121,7 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
           <DialogFooter className="flex flex-col space-y-2 sm:space-y-0">
             <Button type="submit" className="w-full">{isLogin ? "Login" : "Create Account"}</Button>
             <Button type="button" variant="link" onClick={toggleView} className="w-full">
-              {isLogin ? "Don't have an account? Sign up" : "Already have an account? Login"}
+              {isLogin ? "New to semiconductor industry? Sign up" : "Already have a SemiXpertz account? Login"}
             </Button>
           </DialogFooter>
         </form>

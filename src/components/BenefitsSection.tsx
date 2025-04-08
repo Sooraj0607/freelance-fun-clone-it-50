@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Zap, Users, Shield } from 'lucide-react';
+import { Zap, Users, Shield, Cpu, Microchip, Circuit } from 'lucide-react';
 
 interface BenefitsSectionProps {
   visibleSections: {
@@ -11,19 +11,19 @@ interface BenefitsSectionProps {
 const BenefitsSection = ({ visibleSections }: BenefitsSectionProps) => {
   const benefits = [
     {
-      icon: Zap,
-      title: "Fast & Efficient",
-      desc: "Find the right match for your semiconductor projects quickly with our intelligent matching system."
-    },
-    {
-      icon: Users,
-      title: "Verified Specialists",
-      desc: "All semiconductor specialists go through a verification process to ensure quality work."
+      icon: Cpu,
+      title: "Silicon-Focused Talent",
+      desc: "Connect with specialized ASIC, FPGA, and SoC designers who understand your semiconductor needs."
     },
     {
       icon: Shield,
-      title: "Secure Payments",
-      desc: "Our escrow system ensures that payments are secure and released only when work is completed."
+      title: "Verified Engineers",
+      desc: "All semiconductor engineers are verified through technical assessments and industry experience validation."
+    },
+    {
+      icon: Zap,
+      title: "Accelerate Tape-out",
+      desc: "Our platform helps you meet tight silicon deadlines by matching you with the right expertise exactly when needed."
     }
   ];
 

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Search, Zap, Code, Cpu, Database, Layers } from 'lucide-react';
+import { Search, Zap, Code, Cpu, Database, Layers, Microchip, Circuit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -11,11 +11,11 @@ const HeroSection = () => {
   const [text, setText] = useState('');
   
   const specialties = [
-    'semiconductor design',
-    'ASIC development',
+    'ASIC design',
+    'RTL development',
     'chip verification',
-    'embedded systems',
-    'FPGA design'
+    'FPGA implementation',
+    'analog layout'
   ];
 
   useEffect(() => {
@@ -53,12 +53,12 @@ const HeroSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="heading-xl mb-6">
-            Find the perfect <span className="text-primary">semiconductor</span> specialist for
+            Find the perfect <span className="text-primary">semiconductor</span> expert for
             <div className="h-10 inline-block ml-2">
               <span className="text-primary inline-block min-w-[280px] text-left">{text}<span className="animate-pulse">|</span></span>
             </div>
           </h1>
-          <p className="text-xl text-gray-600 mb-8">Connect with top semiconductor talent and businesses on the world's leading specialist platform</p>
+          <p className="text-xl text-gray-600 mb-8">Connect with top silicon design specialists and leading semiconductor companies on the industry's premier talent platform</p>
           
           {/* Tab Selection */}
           <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1 mb-6">
@@ -66,13 +66,13 @@ const HeroSection = () => {
               className={`px-4 py-2 rounded-md ${activeTab === 'work' ? 'bg-primary text-white' : 'text-gray-600'}`}
               onClick={() => setActiveTab('work')}
             >
-              Find Work
+              Find IC Projects
             </button>
             <button
               className={`px-4 py-2 rounded-md ${activeTab === 'talent' ? 'bg-primary text-white' : 'text-gray-600'}`}
               onClick={() => setActiveTab('talent')}
             >
-              Find Talent
+              Hire IC Designers
             </button>
           </div>
           
@@ -81,7 +81,7 @@ const HeroSection = () => {
             <div className="relative w-full">
               <Input 
                 type="text" 
-                placeholder={activeTab === 'work' ? "Search for jobs..." : "Search for skills..."}
+                placeholder={activeTab === 'work' ? "Search for semiconductor jobs..." : "Search for VLSI skills..."}
                 className="pl-10 pr-20 py-6 rounded-l-md rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -94,7 +94,7 @@ const HeroSection = () => {
           {/* Popular Searches */}
           <div className="mt-4 text-sm text-gray-600">
             <span className="mr-2">Popular:</span>
-            {['ASIC Design', 'FPGA', 'Verification', 'Layout', 'RTL'].map((item, index) => (
+            {['ASIC Design', 'RTL Design', 'Verification', 'Physical Design', 'SoC Architecture'].map((item, index) => (
               <a 
                 key={index}
                 href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -111,25 +111,25 @@ const HeroSection = () => {
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
                 <Cpu className="h-6 w-6 text-primary" />
               </div>
-              <span className="text-sm mt-2 text-gray-600">Processors</span>
+              <span className="text-sm mt-2 text-gray-600">SoC Design</span>
             </div>
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
                 <Code className="h-6 w-6 text-primary" />
               </div>
-              <span className="text-sm mt-2 text-gray-600">FPGA</span>
+              <span className="text-sm mt-2 text-gray-600">RTL Design</span>
             </div>
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
-                <Database className="h-6 w-6 text-primary" />
+                <Microchip className="h-6 w-6 text-primary" />
               </div>
-              <span className="text-sm mt-2 text-gray-600">Memory</span>
+              <span className="text-sm mt-2 text-gray-600">Analog IC</span>
             </div>
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
                 <Layers className="h-6 w-6 text-primary" />
               </div>
-              <span className="text-sm mt-2 text-gray-600">Layout</span>
+              <span className="text-sm mt-2 text-gray-600">Layout Design</span>
             </div>
           </div>
         </div>
