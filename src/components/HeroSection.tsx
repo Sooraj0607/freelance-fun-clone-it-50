@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Search, Zap, Code, Cpu, Chip, CircuitBoard } from 'lucide-react';
+import { Search, Zap, Code, Cpu, Database, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -48,6 +48,20 @@ const HeroSection = () => {
     return () => clearTimeout(timeout);
   }, [text, currentWord, isTyping]);
 
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Searching for jobs or talent in the semiconductor industry');
+    if (activeTab === 'work') {
+      window.location.href = '/projects';
+    } else {
+      window.location.href = '/#talent';
+    }
+  };
+
   return (
     <div className="bg-gradient-to-r from-primary/10 to-primary/5 py-16">
       <div className="container mx-auto px-4">
@@ -64,20 +78,20 @@ const HeroSection = () => {
           <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1 mb-6">
             <button
               className={`px-4 py-2 rounded-md ${activeTab === 'work' ? 'bg-primary text-white' : 'text-gray-600'}`}
-              onClick={() => setActiveTab('work')}
+              onClick={() => handleTabChange('work')}
             >
               Find IC Projects
             </button>
             <button
               className={`px-4 py-2 rounded-md ${activeTab === 'talent' ? 'bg-primary text-white' : 'text-gray-600'}`}
-              onClick={() => setActiveTab('talent')}
+              onClick={() => handleTabChange('talent')}
             >
               Hire IC Designers
             </button>
           </div>
           
           {/* Search Bar */}
-          <div className="flex items-center w-full max-w-2xl mx-auto">
+          <form onSubmit={handleSearch} className="flex items-center w-full max-w-2xl mx-auto">
             <div className="relative w-full">
               <Input 
                 type="text" 
@@ -86,10 +100,10 @@ const HeroSection = () => {
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             </div>
-            <Button className="rounded-l-none h-12 px-6">
+            <Button type="submit" className="rounded-l-none h-12 px-6">
               Search
             </Button>
-          </div>
+          </form>
           
           {/* Popular Searches */}
           <div className="mt-4 text-sm text-gray-600">
@@ -121,13 +135,13 @@ const HeroSection = () => {
             </div>
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
-                <Chip className="h-6 w-6 text-primary" />
+                <Database className="h-6 w-6 text-primary" />
               </div>
               <span className="text-sm mt-2 text-gray-600">Analog IC</span>
             </div>
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">
-                <CircuitBoard className="h-6 w-6 text-primary" />
+                <HardDrive className="h-6 w-6 text-primary" />
               </div>
               <span className="text-sm mt-2 text-gray-600">Layout Design</span>
             </div>

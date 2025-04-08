@@ -49,7 +49,7 @@ const PostJobForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    toast.success('Job posted successfully!');
+    toast.success('Semiconductor job posted successfully!');
     
     // Reset form
     setFormData({
@@ -72,7 +72,7 @@ const PostJobForm = () => {
           name="title"
           value={formData.title}
           onChange={handleChange}
-          placeholder="e.g., WordPress Website Development"
+          placeholder="e.g., ASIC Verification Engineer"
           required
         />
       </div>
@@ -86,7 +86,7 @@ const PostJobForm = () => {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          placeholder="Describe the project requirements, deliverables, and expectations..."
+          placeholder="Describe the project requirements, deliverables, and technical specifications..."
           rows={5}
           required
         />
@@ -122,7 +122,7 @@ const PostJobForm = () => {
             name="budget"
             value={formData.budget}
             onChange={handleChange}
-            placeholder="e.g., $500-$1000"
+            placeholder="e.g., $10,000-$15,000"
             required
           />
         </div>
@@ -137,12 +137,12 @@ const PostJobForm = () => {
           name="skills"
           value={formData.skills}
           onChange={handleChange}
-          placeholder="e.g., JavaScript, React, Node.js"
+          placeholder="e.g., Verilog, SystemVerilog, UVM"
           required
         />
       </div>
 
-      <Button type="submit" className="w-full">Post Job</Button>
+      <Button type="submit" className="w-full">Post Semiconductor Job</Button>
     </form>
   );
 };

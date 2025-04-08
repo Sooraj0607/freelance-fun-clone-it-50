@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Cpu, CircuitBoard, Chip } from 'lucide-react';
+import { Cpu, Database, HardDrive, Code } from 'lucide-react';
 
 interface CategorySectionProps {
   visibleSections: {
@@ -11,9 +11,9 @@ interface CategorySectionProps {
 const CategorySection = ({ visibleSections }: CategorySectionProps) => {
   const categories = [
     { name: 'IC Design', icon: Cpu, jobs: 145 },
-    { name: 'Verification', icon: CircuitBoard, jobs: 128 },
-    { name: 'Physical Design', icon: Chip, jobs: 113 },
-    { name: 'Embedded Systems', icon: Cpu, jobs: 97 },
+    { name: 'Verification', icon: Code, jobs: 128 },
+    { name: 'Physical Design', icon: Database, jobs: 113 },
+    { name: 'Embedded Systems', icon: HardDrive, jobs: 97 },
   ];
 
   return (
