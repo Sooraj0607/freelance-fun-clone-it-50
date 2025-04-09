@@ -1,87 +1,83 @@
 
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import JobCard from '@/components/JobCard';
-import SearchBar from '@/components/SearchBar';
+import { Input } from '@/components/ui/input';
 import CategoryFilter from '@/components/CategoryFilter';
-import { Job } from '@/data/mockData';
+import JobCard from '@/components/JobCard';
+import { jobPostings, jobCategories } from '@/data/mockData';
+import { SearchIcon, ArrowRightIcon } from 'lucide-react';
 
 interface JobListingsSectionProps {
   visibleSections: {
-    jobs: boolean;
+    jobListings: boolean;
   };
-  selectedCategory: string;
-  onCategoryChange: (category: string) => void;
-  filteredJobs: Job[];
-  onSearch: (query: string) => void;
-  setIsPostJobOpen: (isOpen: boolean) => void;
 }
 
-const JobListingsSection = ({
-  visibleSections,
-  selectedCategory,
-  onCategoryChange,
-  filteredJobs,
-  onSearch,
-  setIsPostJobOpen
-}: JobListingsSectionProps) => {
+const JobListingsSection = ({ visibleSections }: JobListingsSectionProps) => {
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+  
+  const filteredJobs = jobPostings.filter(job => {
+    const matchesCategory = selectedCategory === 'All Categories' || job.category === selectedCategory;
+    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        job.location.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+  
   return (
-    <section id="jobs" className="py-16">
+    <section id="jobs" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className={`flex flex-col md:flex-row justify-between items-center mb-8 transition-all duration-700 ${visibleSections.jobs ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div>
-            <h2 className="heading-lg mb-2">Latest Job Opportunities</h2>
-            <p className="text-gray-600">Find your next semiconductor project with top companies</p>
+        <h2 className={`heading-lg text-center mb-12 transition-all duration-700 ${visibleSections.jobListings ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>Latest Semiconductor Jobs</h2>
+        
+        <div className={`max-w-4xl mx-auto mb-12 transition-all duration-700 ${visibleSections.jobListings ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="relative">
+            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search for jobs, companies or locations..."
+              className="pl-10 py-6"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-          <Button 
-            className="mt-4 md:mt-0" 
-            onClick={() => setIsPostJobOpen(true)}
-          >
-            Post a Job
-          </Button>
         </div>
         
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="lg:w-1/4">
-            <div className="sticky top-24">
-              <div className="mb-6">
-                <SearchBar onSearch={onSearch} placeholder="Search jobs..." />
-              </div>
-              <CategoryFilter 
-                selectedCategory={selectedCategory} 
-                onCategoryChange={onCategoryChange}
-              />
-              <div className="p-4 bg-secondary rounded-lg">
-                <h3 className="font-semibold mb-3">Job Type</h3>
-                <div className="space-y-2">
-                  {['Remote', 'Full-time', 'Part-time', 'Contract', 'Fixed-Price'].map((type, index) => (
-                    <div key={index} className="flex items-center">
-                      <input type="checkbox" id={`type-${index}`} className="rounded mr-2" />
-                      <label htmlFor={`type-${index}`}>{type}</label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+        <div className={`flex flex-col md:flex-row gap-8 transition-all duration-700 ${visibleSections.jobListings ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="md:w-1/4">
+            <CategoryFilter 
+              selectedCategory={selectedCategory} 
+              onCategoryChange={handleCategoryChange}
+              categories={jobCategories}
+            />
           </div>
           
-          <div className="lg:w-3/4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredJobs.map((job, i) => (
-                <div 
-                  key={job.id} 
-                  className={`transition-all duration-700 ${visibleSections.jobs ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                  style={{ transitionDelay: `${i * 100}ms` }}
-                >
-                  <JobCard job={job} />
+          <div className="md:w-3/4">
+            <div className="grid grid-cols-1 gap-4 mb-8">
+              {filteredJobs.length > 0 ? (
+                filteredJobs.map((job, index) => (
+                  <JobCard key={index} job={job} />
+                ))
+              ) : (
+                <div className="text-center py-8 bg-white rounded-lg shadow-sm">
+                  <p className="text-gray-500 mb-4">No jobs found matching your criteria</p>
+                  <Button onClick={() => {
+                    setSelectedCategory('All Categories');
+                    setSearchTerm('');
+                  }}>
+                    Clear Filters
+                  </Button>
                 </div>
-              ))}
+              )}
             </div>
             
-            <div className="flex justify-center mt-8">
-              <Button variant="outline" className="flex items-center">
-                See More Jobs <ArrowRight className="ml-2 h-4 w-4" />
+            <div className="text-center">
+              <Button variant="outline" className="group">
+                View All Jobs <ArrowRightIcon className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
           </div>
