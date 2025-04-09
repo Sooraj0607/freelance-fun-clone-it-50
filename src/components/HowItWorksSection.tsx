@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Cpu, CircuitBoard, Chip } from 'lucide-react';
+import { Cpu, CircuitBoard, Microchip } from 'lucide-react';
 
 interface HowItWorksSectionProps {
   visibleSections: {
@@ -21,7 +21,7 @@ const HowItWorksSection = ({ visibleSections }: HowItWorksSectionProps) => {
       desc: "Receive proposals from skilled chip design specialists with expertise in your specific ASIC or FPGA domain."
     },
     {
-      icon: Chip,
+      icon: Microchip,
       title: "Tape-out & Pay",
       desc: "Collaborate with your chosen expert through design, verification, and tape-out stages with milestone-based payments."
     }
