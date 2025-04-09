@@ -6,10 +6,11 @@ import CourseCard from '@/components/CourseCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 import SearchBar from '@/components/SearchBar';
 import CategoryFilter from '@/components/CategoryFilter';
 import { coursesData, enrolledCoursesData } from '@/data/coursesData';
-import { BookOpen, GraduationCap, Users, Filter, Star, Clock, Award, LayoutGrid, LayoutList } from 'lucide-react';
+import { BookOpen, GraduationCap, Users, Filter, Star, Clock, Award, LayoutGrid, LayoutList, DollarSign } from 'lucide-react';
 
 const courseCategories = ['All Categories', 'VLSI Design', 'RTL Design', 'Layout Design', 'DSP', 'Verification', 'Analog Design', 'ASIC Design', 'FPGA'];
 const courseLevels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced', 'Expert'];
@@ -335,7 +336,12 @@ const Courses = () => {
                   <p className="text-muted-foreground mb-4">Explore our courses and start learning today</p>
                   <button 
                     className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
-                    onClick={() => document.querySelector('[data-value="all-courses"]')?.click()}
+                    onClick={() => {
+                      const allCoursesTab = document.querySelector('[data-value="all-courses"]');
+                      if (allCoursesTab) {
+                        (allCoursesTab as HTMLElement).click();
+                      }
+                    }}
                   >
                     Browse Courses
                   </button>
@@ -356,7 +362,12 @@ const Courses = () => {
                 <p className="text-muted-foreground mb-4">Save courses you're interested in to view them later</p>
                 <button 
                   className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
-                  onClick={() => document.querySelector('[data-value="all-courses"]')?.click()}
+                  onClick={() => {
+                    const allCoursesTab = document.querySelector('[data-value="all-courses"]');
+                    if (allCoursesTab) {
+                      (allCoursesTab as HTMLElement).click();
+                    }
+                  }}
                 >
                   Browse Courses
                 </button>
