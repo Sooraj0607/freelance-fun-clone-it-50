@@ -81,7 +81,7 @@ const Projects = () => {
                       <CategoryFilter 
                         selectedCategory={selectedCategory} 
                         onCategoryChange={handleCategoryChange}
-                        categories={projectCategories}
+                        categories={jobCategories}
                       />
                       
                       <div>
