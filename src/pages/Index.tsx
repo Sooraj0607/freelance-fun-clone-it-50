@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
@@ -72,20 +73,25 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       
-      <CategorySection visibleSections={{ categories: visibleSections.categories }} />
+      <CategorySection visibleSections={visibleSections} />
       
       <JobListingsSection 
-        visibleSections={{ jobListings: visibleSections.jobs }}
+        visibleSections={visibleSections}
+        selectedCategory={selectedCategory}
+        onCategoryChange={handleCategoryChange}
+        filteredJobs={filteredJobs}
+        onSearch={handleSearch}
+        setIsPostJobOpen={setIsPostJobOpen}
       />
       
-      <HowItWorksSection visibleSections={{ howItWorks: visibleSections.howItWorks }} />
+      <HowItWorksSection visibleSections={visibleSections} />
       
       <TalentSection 
-        visibleSections={{ talent: visibleSections.talent }}
+        visibleSections={visibleSections} 
         topFreelancers={topFreelancers}
       />
       
-      <BenefitsSection visibleSections={{ benefits: visibleSections.benefits }} />
+      <BenefitsSection visibleSections={visibleSections} />
       
       <CtaSection />
       
