@@ -7,13 +7,14 @@ import HeroSection from '@/components/HeroSection';
 import PostJobForm from '@/components/PostJobForm';
 import { jobListings, topFreelancers } from '@/data/mockData';
 
-// Import our newly created section components
+// Import our section components
 import CategorySection from '@/components/CategorySection';
 import JobListingsSection from '@/components/JobListingsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import TalentSection from '@/components/TalentSection';
 import BenefitsSection from '@/components/BenefitsSection';
 import CtaSection from '@/components/CtaSection';
+import RoadmapSection from '@/components/RoadmapSection';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -24,6 +25,7 @@ const Index = () => {
     howItWorks: false,
     talent: false,
     benefits: false,
+    roadmap: false,
   });
   
   const handleSearch = (query: string) => {
@@ -44,6 +46,7 @@ const Index = () => {
         { id: 'how-it-works', offset: -200 },
         { id: 'talent', offset: -200 },
         { id: 'benefits', offset: -200 },
+        { id: 'roadmap', offset: -200 },
       ];
       
       sectionsToCheck.forEach(section => {
@@ -92,6 +95,8 @@ const Index = () => {
       />
       
       <BenefitsSection visibleSections={visibleSections} />
+      
+      <RoadmapSection visibleSections={visibleSections} />
       
       <CtaSection />
       
