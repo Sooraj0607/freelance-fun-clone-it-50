@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
@@ -26,6 +25,7 @@ const Index = () => {
     talent: false,
     benefits: false,
     roadmap: false,
+    jobListings: false,
   });
   
   const handleSearch = (query: string) => {

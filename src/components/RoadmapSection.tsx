@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { BookOpen, Code, Layers, Terminal, GraduationCap, Tool } from 'lucide-react';
+import { BookOpen, Code, Layers, Terminal, GraduationCap, Wrench } from 'lucide-react';
 
 interface RoadmapSectionProps {
   visibleSections?: {
@@ -200,7 +199,7 @@ const RoadmapSection = ({ visibleSections }: RoadmapSectionProps) => {
             <AccordionItem value="fpga-development">
               <AccordionTrigger className="text-xl font-semibold">
                 <div className="flex items-center gap-2">
-                  <Tool className="h-5 w-5 text-primary" />
+                  <Wrench className="h-5 w-5 text-primary" />
                   <span>4. FPGA Development</span>
                 </div>
               </AccordionTrigger>

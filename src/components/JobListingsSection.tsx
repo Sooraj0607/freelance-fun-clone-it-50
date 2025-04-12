@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import CategoryFilter from '@/components/CategoryFilter';
 import JobCard from '@/components/JobCard';
-import { jobPostings, jobCategories } from '@/data/mockData';
+import { jobListings, jobCategories } from '@/data/mockData';
 import { SearchIcon, ArrowRightIcon } from 'lucide-react';
 
 interface JobListingsSectionProps {
@@ -21,7 +21,7 @@ const JobListingsSection = ({ visibleSections }: JobListingsSectionProps) => {
     setSelectedCategory(category);
   };
   
-  const filteredJobs = jobPostings.filter(job => {
+  const filteredJobs = jobListings.filter(job => {
     const matchesCategory = selectedCategory === 'All Categories' || job.category === selectedCategory;
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||

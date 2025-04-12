@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import CategoryFilter from '@/components/CategoryFilter';
 import { FilterIcon, SearchIcon, ArrowRightIcon } from 'lucide-react';
-import { projectsData, projectCategories } from '@/data/mockData';
+import { projects, jobCategories } from '@/data/mockData';
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -18,7 +17,7 @@ const Projects = () => {
     setSelectedCategory(category);
   };
   
-  const filteredProjects = projectsData.filter(project => {
+  const filteredProjects = projects.filter(project => {
     const matchesCategory = selectedCategory === 'All Categories' || project.category === selectedCategory;
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           project.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -81,7 +80,7 @@ const Projects = () => {
                       <CategoryFilter 
                         selectedCategory={selectedCategory} 
                         onCategoryChange={handleCategoryChange}
-                        categories={projectCategories}
+                        categories={jobCategories}
                       />
                       
                       <div>
