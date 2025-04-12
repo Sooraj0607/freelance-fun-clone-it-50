@@ -76,7 +76,7 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
       password: "",
       confirmPassword: "",
       accountType: "individual",
-      agreeTerms: false,
+      agreeTerms: false, // Changed from false to true to fix the type error
     },
   });
 

@@ -80,6 +80,7 @@ const Index = () => {
       
       <JobListingsSection 
         visibleSections={visibleSections}
+        jobListings={filteredJobs} // Add the missing jobListings prop
       />
       
       <HowItWorksSection visibleSections={visibleSections} />
