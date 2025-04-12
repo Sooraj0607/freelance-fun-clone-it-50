@@ -24,8 +24,8 @@ const JobListingsSection = ({ visibleSections }: JobListingsSectionProps) => {
   const filteredJobs = jobListings.filter(job => {
     const matchesCategory = selectedCategory === 'All Categories' || job.category === selectedCategory;
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        job.location.toLowerCase().includes(searchTerm.toLowerCase());
+                        job.postedBy.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        job.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
   

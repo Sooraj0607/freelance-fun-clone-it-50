@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
@@ -80,11 +81,6 @@ const Index = () => {
       
       <JobListingsSection 
         visibleSections={visibleSections}
-        selectedCategory={selectedCategory}
-        onCategoryChange={handleCategoryChange}
-        filteredJobs={filteredJobs}
-        onSearch={handleSearch}
-        setIsPostJobOpen={setIsPostJobOpen}
       />
       
       <HowItWorksSection visibleSections={visibleSections} />
