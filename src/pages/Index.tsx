@@ -26,7 +26,6 @@ const Index = () => {
     talent: false,
     benefits: false,
     roadmap: false,
-    jobListings: false,
   });
   
   const handleSearch = (query: string) => {
