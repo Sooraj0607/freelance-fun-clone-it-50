@@ -1,167 +1,272 @@
 
-import React from 'react';
-import { Cpu, Code, Database, HardDrive } from 'lucide-react';
+import React, { useState } from 'react';
 import { Accordion } from '@/components/ui/accordion';
-import RoadmapAccordionItem from './roadmap/RoadmapAccordionItem';
-import RoadmapTips from './roadmap/RoadmapTips';
+import RoadmapAccordionItem from '@/components/roadmap/RoadmapAccordionItem';
+import RoadmapTips from '@/components/roadmap/RoadmapTips';
+import { Code2, Server, Cpu, Layers, ArrowRight } from 'lucide-react';
 
 interface RoadmapSectionProps {
   visibleSections: {
-    roadmap: boolean;
+    categories?: boolean;
+    jobs?: boolean;
+    howItWorks?: boolean;
+    talent?: boolean;
+    benefits?: boolean;
+    roadmap?: boolean;
   };
 }
 
-const RoadmapSection = ({ visibleSections }: RoadmapSectionProps) => {
+const RoadmapSection: React.FC<RoadmapSectionProps> = ({ visibleSections }) => {
+  const [activeSection, setActiveSection] = useState<string>("rtl");
+  
   const generalTips = [
-    "Start with foundational topics before diving into advanced concepts.",
-    "Use industry-standard tools to gain hands-on experience.",
-    "Build a portfolio of projects showcasing your expertise in specific domains.",
-    "Stay updated with trends like AI integration, low-power design techniques, and emerging technologies.",
-    "Join semiconductor communities and participate in forums to learn from industry experts."
-  ];
-
-  const roadmapData = [
-    {
-      value: "rtl-design",
-      title: "RTL Design",
-      description: "Register Transfer Level Design involves creating digital circuits using hardware description languages.",
-      icon: <Cpu className="h-5 w-5 text-primary" />,
-      foundationalTopics: [
-        "Digital Electronics: Boolean algebra, logic gates, combinational/sequential circuits",
-        "CMOS Basics: Transistor-level design and logic families",
-        "Verilog/VHDL: Syntax, modules, testbenches, and simulation"
-      ],
-      advancedTopics: [
-        "Static Timing Analysis (STA): Understanding timing constraints and delays",
-        "Low-power Design Techniques: Clock gating, power gating",
-        "Synthesis: RTL-to-Gate level conversion"
-      ],
-      courses: [
-        "Online platforms like Udemy, Coursera (e.g., 'Digital Design using Verilog')",
-        "Specialized VLSI training institutes like Cranes Varsity or ChipEdge"
-      ],
-      tools: [
-        "Cadence Genus, Synopsys Design Compiler for synthesis",
-        "Simulation tools like ModelSim or Xilinx Vivado"
-      ],
-      projects: [
-        "Design a simple ALU or FSM (Finite State Machine)",
-        "Implement low-power techniques in a digital circuit"
-      ]
-    },
-    {
-      value: "verification",
-      title: "Verification",
-      description: "ASIC/FPGA Verification ensures that the design functions as intended before fabrication.",
-      icon: <Code className="h-5 w-5 text-primary" />,
-      foundationalTopics: [
-        "Digital Logic Design: Familiarity with circuit behavior and testing",
-        "Verilog/SystemVerilog: Focus on verification constructs like assertions"
-      ],
-      advancedTopics: [
-        "UVM (Universal Verification Methodology): Standardized verification framework",
-        "Coverage Metrics: Functional coverage and code coverage",
-        "Debugging Techniques: Waveform analysis using tools like GTKWave"
-      ],
-      courses: [
-        "Learn UVM methodology through platforms like ChipEdge or Maven Silicon"
-      ],
-      tools: [
-        "Simulation tools: Mentor Graphics QuestaSim, Synopsys VCS",
-        "Coverage analysis tools: Cadence Incisive Enterprise Simulator"
-      ],
-      projects: [
-        "Build a testbench for a UART or SPI protocol",
-        "Implement constrained random verification for a simple design"
-      ]
-    },
-    {
-      value: "physical-design",
-      title: "Physical Design",
-      description: "Backend Design involves transforming gate-level netlists into layouts for fabrication.",
-      icon: <Database className="h-5 w-5 text-primary" />,
-      foundationalTopics: [
-        "CMOS Circuit Design: Understanding layout rules and transistor behavior",
-        "STA (Static Timing Analysis): Timing closure techniques"
-      ],
-      advancedTopics: [
-        "Floorplanning, Placement, Routing: Optimizing chip area and power consumption",
-        "Power Integrity Analysis: IR drop analysis and EM checks",
-        "DRC/LVS Checks: Ensuring design rule compliance"
-      ],
-      courses: [
-        "Physical design courses from institutes like VLSI Expert or Cadence Training Academy"
-      ],
-      tools: [
-        "Cadence Innovus, Synopsys ICC2 for physical implementation",
-        "Signoff tools like PrimeTime or RedHawk for power analysis"
-      ],
-      projects: [
-        "Create layouts for basic circuits like inverters or multiplexers",
-        "Perform timing closure for a small design block"
-      ]
-    },
-    {
-      value: "fpga-development",
-      title: "FPGA Development",
-      description: "Programming reconfigurable hardware for specific applications.",
-      icon: <HardDrive className="h-5 w-5 text-primary" />,
-      foundationalTopics: [
-        "FPGA Architecture: LUTs, flip-flops, routing resources",
-        "HDL Programming: Verilog/VHDL basics tailored for FPGA designs"
-      ],
-      advancedTopics: [
-        "IP Integration: Using pre-designed cores for communication protocols (e.g., UART)",
-        "Optimization Techniques: Resource utilization and timing constraints"
-      ],
-      courses: [
-        "Xilinx or Intel FPGA training programs (e.g., 'Designing with Vivado')"
-      ],
-      tools: [
-        "Xilinx Vivado/ISE, Intel Quartus Prime for synthesis and implementation"
-      ],
-      projects: [
-        "Implement real-time signal processing applications using DSP blocks in FPGAs"
-      ]
-    }
+    "Start with the fundamentals before diving into specialized domains",
+    "Practice with open-source EDA tools before investing in commercial ones",
+    "Join semiconductor communities on Reddit, Stack Exchange, and LinkedIn",
+    "Contribute to open-source hardware projects to build your portfolio",
+    "Stay updated with industry standards and new process technologies"
   ];
 
   return (
-    <section id="roadmap" className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className={`heading-lg text-center mb-12 transition-all duration-700 ${
-          visibleSections.roadmap ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          Roadmaps for Different Domains in VLSI Industry
-        </h2>
-        
-        <div className={`max-w-4xl mx-auto transition-all duration-700 ${
-          visibleSections.roadmap ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <p className="text-center text-gray-600 mb-8">
-            Here are detailed roadmaps for key domains in the VLSI industry. Each roadmap outlines foundational topics, 
-            tools, and learning strategies to build expertise.
+    <section 
+      id="roadmap" 
+      className={`py-20 px-4 transition-all duration-1000 ${
+        visibleSections.roadmap ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'
+      }`}
+    >
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Semiconductor Career Roadmap</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Navigate your path in the semiconductor industry with our comprehensive career roadmaps for different domains.
           </p>
-          
-          <Accordion type="single" collapsible className="w-full">
-            {roadmapData.map((roadmap) => (
-              <RoadmapAccordionItem
-                key={roadmap.value}
-                value={roadmap.value}
-                title={roadmap.title}
-                description={roadmap.description}
-                icon={roadmap.icon}
-                foundationalTopics={roadmap.foundationalTopics}
-                advancedTopics={roadmap.advancedTopics}
-                courses={roadmap.courses}
-                tools={roadmap.tools}
-                projects={roadmap.projects}
-              />
-            ))}
-          </Accordion>
-          
-          <RoadmapTips tips={generalTips} />
         </div>
+
+        {/* Flowchart navigation */}
+        <div className="mb-10 overflow-x-auto">
+          <div className="min-w-fit flex justify-center items-center space-x-3 p-4">
+            {/* RTL Design */}
+            <div 
+              onClick={() => setActiveSection("rtl")} 
+              className={`flowchart-box ${activeSection === "rtl" ? 'bg-primary text-white' : 'bg-gray-100 hover:bg-gray-200'} 
+                cursor-pointer p-5 rounded-lg flex flex-col items-center w-40 h-40 justify-center transition-colors`}
+            >
+              <Code2 size={30} className={activeSection === "rtl" ? "text-white" : "text-primary"} />
+              <span className="mt-2 font-medium text-center">RTL Design</span>
+              <span className="text-xs text-center mt-1">{activeSection === "rtl" ? "Active" : "Click to view"}</span>
+            </div>
+            
+            <ArrowRight className="text-gray-400" size={24} />
+            
+            {/* Verification */}
+            <div 
+              onClick={() => setActiveSection("verification")} 
+              className={`flowchart-box ${activeSection === "verification" ? 'bg-primary text-white' : 'bg-gray-100 hover:bg-gray-200'} 
+                cursor-pointer p-5 rounded-lg flex flex-col items-center w-40 h-40 justify-center transition-colors`}
+            >
+              <Server size={30} className={activeSection === "verification" ? "text-white" : "text-primary"} />
+              <span className="mt-2 font-medium text-center">Verification</span>
+              <span className="text-xs text-center mt-1">{activeSection === "verification" ? "Active" : "Click to view"}</span>
+            </div>
+            
+            <ArrowRight className="text-gray-400" size={24} />
+            
+            {/* Physical Design */}
+            <div 
+              onClick={() => setActiveSection("physical")} 
+              className={`flowchart-box ${activeSection === "physical" ? 'bg-primary text-white' : 'bg-gray-100 hover:bg-gray-200'} 
+                cursor-pointer p-5 rounded-lg flex flex-col items-center w-40 h-40 justify-center transition-colors`}
+            >
+              <Cpu size={30} className={activeSection === "physical" ? "text-white" : "text-primary"} />
+              <span className="mt-2 font-medium text-center">Physical Design</span>
+              <span className="text-xs text-center mt-1">{activeSection === "physical" ? "Active" : "Click to view"}</span>
+            </div>
+            
+            <ArrowRight className="text-gray-400" size={24} />
+            
+            {/* FPGA Development */}
+            <div 
+              onClick={() => setActiveSection("fpga")} 
+              className={`flowchart-box ${activeSection === "fpga" ? 'bg-primary text-white' : 'bg-gray-100 hover:bg-gray-200'} 
+                cursor-pointer p-5 rounded-lg flex flex-col items-center w-40 h-40 justify-center transition-colors`}
+            >
+              <Layers size={30} className={activeSection === "fpga" ? "text-white" : "text-primary"} />
+              <span className="mt-2 font-medium text-center">FPGA Development</span>
+              <span className="text-xs text-center mt-1">{activeSection === "fpga" ? "Active" : "Click to view"}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Content based on selected roadmap */}
+        <div className="transition-all duration-500 ease-in-out">
+          <Accordion type="single" collapsible defaultValue={activeSection} value={activeSection} onValueChange={setActiveSection}>
+            <RoadmapAccordionItem
+              value="rtl"
+              title="RTL Design"
+              description="Digital logic implementation using hardware description languages"
+              icon={<Code2 className="h-5 w-5 text-primary" />}
+              foundationalTopics={[
+                "Digital Logic Fundamentals",
+                "HDL Languages (Verilog/VHDL)",
+                "Sequential & Combinational Circuits",
+                "Finite State Machines",
+                "Timing Analysis Basics"
+              ]}
+              advancedTopics={[
+                "Advanced RTL Optimization",
+                "Clock Domain Crossing",
+                "Low Power Design Techniques",
+                "High-Speed Interface Design",
+                "Design for Testability"
+              ]}
+              courses={[
+                "Digital Design and Computer Architecture (ETH Zurich)",
+                "Hardware Description Languages for FPGA Design (Coursera)",
+                "Verilog HDL: Fast Track to Verilog Design (Udemy)",
+                "SystemVerilog for Design and Verification (Verific)"
+              ]}
+              tools={[
+                "Xilinx Vivado",
+                "Intel Quartus Prime",
+                "Synopsys Design Compiler",
+                "Cadence Genus",
+                "Siemens EDA ModelSim"
+              ]}
+              projects={[
+                "CPU Design (RISC Architecture)",
+                "UART/SPI/I2C Communication Protocols",
+                "Digital Filter Implementation",
+                "Video Processing Pipeline",
+                "Cryptographic Hardware Accelerator"
+              ]}
+            />
+            
+            <RoadmapAccordionItem
+              value="verification"
+              title="Verification"
+              description="Ensuring RTL designs meet functional specifications"
+              icon={<Server className="h-5 w-5 text-primary" />}
+              foundationalTopics={[
+                "Verification Methodologies (UVM)",
+                "Testbench Architecture",
+                "Assertion-Based Verification",
+                "Functional Coverage",
+                "Simulation Basics"
+              ]}
+              advancedTopics={[
+                "Constrained Random Verification",
+                "Coverage-Driven Verification",
+                "Formal Verification Methods",
+                "Hardware Acceleration",
+                "Emulation Techniques"
+              ]}
+              courses={[
+                "SystemVerilog Verification (Verification Academy)",
+                "UVM Basics to Advanced (Doulos)",
+                "Formal Verification Techniques (Cadence)",
+                "Assertion-Based Verification (Synopsys)"
+              ]}
+              tools={[
+                "Synopsys VCS",
+                "Cadence Xcelium",
+                "Siemens EDA Questa",
+                "Synopsys VC Formal",
+                "Cadence JasperGold"
+              ]}
+              projects={[
+                "Memory Controller Verification",
+                "Bus Protocol Verification",
+                "Custom UVM Environment",
+                "Processor Verification",
+                "Mixed-Signal Verification Project"
+              ]}
+            />
+            
+            <RoadmapAccordionItem
+              value="physical"
+              title="Physical Design"
+              description="Transforming RTL into manufacturable layout"
+              icon={<Cpu className="h-5 w-5 text-primary" />}
+              foundationalTopics={[
+                "Floorplanning Fundamentals",
+                "Placement & Routing",
+                "Clock Tree Synthesis",
+                "Static Timing Analysis",
+                "Design Rule Checks"
+              ]}
+              advancedTopics={[
+                "Power Analysis and Optimization",
+                "Signal Integrity",
+                "FinFET Design Considerations",
+                "Advanced Node Techniques",
+                "IR Drop Analysis"
+              ]}
+              courses={[
+                "VLSI Physical Design (NPTEL)",
+                "Advanced Physical Design (Cadence Learning)",
+                "Timing Closure in Modern SoCs (Synopsys)",
+                "Physical Verification with IC Validator (Synopsys)"
+              ]}
+              tools={[
+                "Cadence Innovus",
+                "Synopsys ICC2",
+                "Cadence Tempus",
+                "Synopsys PrimeTime",
+                "Siemens Calibre"
+              ]}
+              projects={[
+                "Standard Cell Library Development",
+                "Clock Distribution Network Design",
+                "Low Power SoC Implementation",
+                "Mixed-Signal Layout",
+                "Advanced Node Tapeout Project"
+              ]}
+            />
+            
+            <RoadmapAccordionItem
+              value="fpga"
+              title="FPGA Development"
+              description="Programmable hardware implementation and optimization"
+              icon={<Layers className="h-5 w-5 text-primary" />}
+              foundationalTopics={[
+                "FPGA Architecture",
+                "Hardware Description Languages",
+                "FPGA Design Flow",
+                "Timing Constraints",
+                "Resource Utilization"
+              ]}
+              advancedTopics={[
+                "High-Level Synthesis",
+                "Embedded Processor Integration",
+                "DSP Implementations",
+                "High-Speed Interfaces (PCIe, DDR)",
+                "Partial Reconfiguration"
+              ]}
+              courses={[
+                "FPGA Design for Embedded Systems (Coursera)",
+                "High-Level Synthesis with Vitis HLS (Xilinx)",
+                "Intel FPGA Development (Intel Learning)",
+                "Advanced FPGA Design (Doulos)"
+              ]}
+              tools={[
+                "Xilinx Vivado",
+                "Intel Quartus Prime",
+                "AMD Vitis",
+                "Intel OneAPI",
+                "Lattice Diamond"
+              ]}
+              projects={[
+                "Video Processing Accelerator",
+                "Software Defined Radio",
+                "Neural Network Implementation",
+                "High-Performance Computing Application",
+                "IoT Gateway with FPGA"
+              ]}
+            />
+          </Accordion>
+        </div>
+
+        <RoadmapTips tips={generalTips} />
       </div>
     </section>
   );
