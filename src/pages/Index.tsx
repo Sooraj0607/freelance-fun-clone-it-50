@@ -15,6 +15,10 @@ import TalentSection from '@/components/TalentSection';
 import BenefitsSection from '@/components/BenefitsSection';
 import CtaSection from '@/components/CtaSection';
 import RoadmapSection from '@/components/RoadmapSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import StatsSection from '@/components/StatsSection';
+import FeaturedCoursesSection from '@/components/FeaturedCoursesSection';
+import TrustLogosSection from '@/components/TrustLogosSection';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -26,6 +30,9 @@ const Index = () => {
     talent: false,
     benefits: false,
     roadmap: false,
+    testimonials: false,
+    stats: false,
+    courses: false,
   });
   
   const handleSearch = (query: string) => {
@@ -47,6 +54,9 @@ const Index = () => {
         { id: 'talent', offset: -200 },
         { id: 'benefits', offset: -200 },
         { id: 'roadmap', offset: -200 },
+        { id: 'testimonials', offset: -200 },
+        { id: 'stats', offset: -200 },
+        { id: 'courses', offset: -200 },
       ];
       
       sectionsToCheck.forEach(section => {
@@ -76,6 +86,8 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       
+      <TrustLogosSection />
+      
       <CategorySection visibleSections={visibleSections} />
       
       <JobListingsSection 
@@ -91,6 +103,12 @@ const Index = () => {
       />
       
       <BenefitsSection visibleSections={visibleSections} />
+      
+      <StatsSection visibleSections={visibleSections} />
+      
+      <TestimonialsSection visibleSections={visibleSections} />
+      
+      <FeaturedCoursesSection visibleSections={visibleSections} />
       
       <RoadmapSection visibleSections={visibleSections} />
       
