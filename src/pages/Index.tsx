@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
@@ -19,6 +18,9 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import StatsSection from '@/components/StatsSection';
 import FeaturedCoursesSection from '@/components/FeaturedCoursesSection';
 import TrustLogosSection from '@/components/TrustLogosSection';
+import FeatureHighlightsSection from '@/components/home/FeatureHighlightsSection';
+import ExplorePlatformSection from '@/components/home/ExplorePlatformSection';
+import MoreToolsSection from '@/components/home/MoreToolsSection';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -85,14 +87,20 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <HeroSection />
-      
+
+      {/* New Key Features Section */}
+      <FeatureHighlightsSection />
+
       <TrustLogosSection />
-      
+
+      {/* Explore Platform Menu */}
+      <ExplorePlatformSection />
+
       <CategorySection visibleSections={visibleSections} />
       
       <JobListingsSection 
         visibleSections={visibleSections}
-        jobListings={filteredJobs} // Add the missing jobListings prop
+        jobListings={filteredJobs}
       />
       
       <HowItWorksSection visibleSections={visibleSections} />
@@ -113,9 +121,12 @@ const Index = () => {
       <RoadmapSection visibleSections={visibleSections} />
       
       <CtaSection />
-      
+
+      {/* More Tools */}
+      <MoreToolsSection />
+
       <Footer />
-      
+
       {/* Post Job Dialog */}
       <Dialog open={isPostJobOpen} onOpenChange={setIsPostJobOpen}>
         <DialogContent className="sm:max-w-[600px]">
