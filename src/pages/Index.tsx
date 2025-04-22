@@ -6,7 +6,6 @@ import HeroSection from '@/components/HeroSection';
 import PostJobForm from '@/components/PostJobForm';
 import { jobListings, topFreelancers } from '@/data/mockData';
 
-// Import our section components
 import CategorySection from '@/components/CategorySection';
 import JobListingsSection from '@/components/JobListingsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
@@ -21,6 +20,9 @@ import TrustLogosSection from '@/components/TrustLogosSection';
 import FeatureHighlightsSection from '@/components/home/FeatureHighlightsSection';
 import ExplorePlatformSection from '@/components/home/ExplorePlatformSection';
 import MoreToolsSection from '@/components/home/MoreToolsSection';
+import AchievementsSection from '@/components/home/AchievementsSection';
+import ChallengesSection from '@/components/home/ChallengesSection';
+import CommunityHighlights from '@/components/home/CommunityHighlights';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -87,47 +89,31 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <HeroSection />
-
-      {/* New Key Features Section */}
       <FeatureHighlightsSection />
-
       <TrustLogosSection />
-
-      {/* Explore Platform Menu */}
       <ExplorePlatformSection />
-
       <CategorySection visibleSections={visibleSections} />
-      
       <JobListingsSection 
         visibleSections={visibleSections}
         jobListings={filteredJobs}
       />
-      
       <HowItWorksSection visibleSections={visibleSections} />
-      
+      <ChallengesSection />
       <TalentSection 
         visibleSections={visibleSections} 
         topFreelancers={topFreelancers}
       />
-      
+      <AchievementsSection />
       <BenefitsSection visibleSections={visibleSections} />
-      
       <StatsSection visibleSections={visibleSections} />
-      
+      <CommunityHighlights />
       <TestimonialsSection visibleSections={visibleSections} />
-      
       <FeaturedCoursesSection visibleSections={visibleSections} />
-      
       <RoadmapSection visibleSections={visibleSections} />
-      
       <CtaSection />
-
-      {/* More Tools */}
       <MoreToolsSection />
-
       <Footer />
 
-      {/* Post Job Dialog */}
       <Dialog open={isPostJobOpen} onOpenChange={setIsPostJobOpen}>
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
