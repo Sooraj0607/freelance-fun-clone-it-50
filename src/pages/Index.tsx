@@ -23,6 +23,8 @@ import MoreToolsSection from '@/components/home/MoreToolsSection';
 import AchievementsSection from '@/components/home/AchievementsSection';
 import ChallengesSection from '@/components/home/ChallengesSection';
 import CommunityHighlights from '@/components/home/CommunityHighlights';
+import ELibrarySection from '@/components/home/ELibrarySection';
+import NewsSection from '@/components/home/NewsSection';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -99,6 +101,8 @@ const Index = () => {
       />
       <HowItWorksSection visibleSections={visibleSections} />
       <ChallengesSection />
+      <ELibrarySection />
+      <NewsSection />
       <TalentSection 
         visibleSections={visibleSections} 
         topFreelancers={topFreelancers}
@@ -113,7 +117,7 @@ const Index = () => {
       <CtaSection />
       <MoreToolsSection />
       <Footer />
-
+      
       <Dialog open={isPostJobOpen} onOpenChange={setIsPostJobOpen}>
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
