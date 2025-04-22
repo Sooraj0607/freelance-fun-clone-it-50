@@ -26,29 +26,31 @@ const CHALLENGES = [
   }
 ];
 
-const ChallengesSection = () => (
-  <section className="py-12 bg-gray-50">
-    <div className="container mx-auto px-4">
-      <h2 className="heading-lg text-center mb-4">Technical Challenges</h2>
-      <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-        Put your semiconductor skills to the test with our diverse range of technical challenges
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {CHALLENGES.map((item, i) => (
-          <div key={i} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center mb-4">
-              {item.icon}
-              <h3 className="font-semibold ml-2">{item.title}</h3>
+const ChallengesSection = () => {
+  return (
+    <section className="py-12 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <h2 className="heading-lg text-center mb-4">Technical Challenges</h2>
+        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+          Put your semiconductor skills to the test with our diverse range of technical challenges
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {CHALLENGES.map((item, i) => (
+            <div key={i} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center mb-4">
+                {item.icon}
+                <h3 className="font-semibold ml-2">{item.title}</h3>
+              </div>
+              <p className="text-sm text-gray-600">{item.desc}</p>
             </div>
-            <p className="text-sm text-gray-600">{item.desc}</p>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div className="text-center">
+          <Button>Start a Challenge</Button>
+        </div>
       </div>
-      <div className="text-center">
-        <Button>Start a Challenge</Button>
-      </div>
-    </div>
-  </section>
-));
+    </section>
+  );
+};
 
 export default ChallengesSection;
