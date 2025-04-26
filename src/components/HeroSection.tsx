@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, Zap, Code, Cpu, Database, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -54,11 +53,10 @@ const HeroSection = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Searching for jobs or talent in the semiconductor industry');
     if (activeTab === 'work') {
-      window.location.href = '/projects';
+      window.location.href = '/jobs';
     } else {
-      window.location.href = '/#talent';
+      window.location.href = '/talent';
     }
   };
 
@@ -74,23 +72,21 @@ const HeroSection = () => {
           </h1>
           <p className="text-xl text-gray-600 mb-8">Connect with top silicon design specialists and leading semiconductor companies on the industry's premier talent platform</p>
           
-          {/* Tab Selection */}
           <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1 mb-6">
             <button
               className={`px-4 py-2 rounded-md ${activeTab === 'work' ? 'bg-primary text-white' : 'text-gray-600'}`}
               onClick={() => handleTabChange('work')}
             >
-              Find IC Projects
+              Find Work
             </button>
             <button
               className={`px-4 py-2 rounded-md ${activeTab === 'talent' ? 'bg-primary text-white' : 'text-gray-600'}`}
               onClick={() => handleTabChange('talent')}
             >
-              Hire IC Designers
+              Hire Freelancer
             </button>
           </div>
           
-          {/* Search Bar */}
           <form onSubmit={handleSearch} className="flex items-center w-full max-w-2xl mx-auto">
             <div className="relative w-full">
               <Input 
@@ -105,7 +101,6 @@ const HeroSection = () => {
             </Button>
           </form>
           
-          {/* Popular Searches */}
           <div className="mt-4 text-sm text-gray-600">
             <span className="mr-2">Popular:</span>
             {['ASIC Design', 'RTL Design', 'Verification', 'Physical Design', 'SoC Architecture'].map((item, index) => (
@@ -119,7 +114,6 @@ const HeroSection = () => {
             ))}
           </div>
           
-          {/* Tech Icons */}
           <div className="flex justify-center mt-10 gap-8">
             <div className="flex flex-col items-center group cursor-pointer">
               <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-300">

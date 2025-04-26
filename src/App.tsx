@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import Profile from "./pages/Profile";
 import Events from "./pages/Events";
 import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
+import Career from "./pages/Career";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/events" element={<Events />} />
           <Route path="/community" element={<Community />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/career" element={<Career />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

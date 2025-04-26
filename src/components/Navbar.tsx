@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Bell, MessageSquare, User, Calendar, Users } from 'lucide-react';
@@ -42,18 +41,18 @@ const Navbar = () => {
                   <NavigationMenuTrigger className="bg-transparent hover:bg-gray-50">Work</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid grid-cols-2 gap-3 p-4 w-[400px]">
-                      <Link to="/projects" className="flex p-3 hover:bg-gray-50 rounded-md">
+                      <Link to="/jobs" className="flex p-3 hover:bg-gray-50 rounded-md">
                         <div>
-                          <div className="font-medium">Projects</div>
-                          <div className="text-sm text-gray-500">Find and bid on semiconductor projects</div>
+                          <div className="font-medium">Find Work</div>
+                          <div className="text-sm text-gray-500">Browse semiconductor jobs</div>
                         </div>
                       </Link>
-                      <a href="/#how-it-works" className="flex p-3 hover:bg-gray-50 rounded-md">
+                      <Link to="/career" className="flex p-3 hover:bg-gray-50 rounded-md">
                         <div>
-                          <div className="font-medium">How it Works</div>
-                          <div className="text-sm text-gray-500">Learn about our platform process</div>
+                          <div className="font-medium">Career</div>
+                          <div className="text-sm text-gray-500">Grow your career</div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -131,7 +130,8 @@ const Navbar = () => {
         <div className="md:hidden bg-white px-4 py-2 shadow-lg">
           <div className="flex flex-col space-y-3">
             <Link to="/" className="py-2 text-gray-600 hover:text-primary transition-colors">Home</Link>
-            <Link to="/projects" className="py-2 text-gray-600 hover:text-primary transition-colors">Projects</Link>
+            <Link to="/jobs" className="py-2 text-gray-600 hover:text-primary transition-colors">Find Work</Link>
+            <Link to="/career" className="py-2 text-gray-600 hover:text-primary transition-colors">Career</Link>
             <Link to="/courses" className="py-2 text-gray-600 hover:text-primary transition-colors">Courses</Link>
             <Link to="/events" className="py-2 text-gray-600 hover:text-primary transition-colors">Events</Link>
             <Link to="/community" className="py-2 text-gray-600 hover:text-primary transition-colors flex items-center">
