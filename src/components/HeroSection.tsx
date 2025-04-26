@@ -1,13 +1,17 @@
+
 import React, { useState, useEffect } from 'react';
 import { Search, Zap, Code, Cpu, Database, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('work');
   const [currentWord, setCurrentWord] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [text, setText] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   
   const specialties = [
     'ASIC design',
@@ -54,9 +58,9 @@ const HeroSection = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (activeTab === 'work') {
-      window.location.href = '/jobs';
+      navigate(`/jobs?q=${searchQuery}`);
     } else {
-      window.location.href = '/talent';
+      navigate(`/talent?q=${searchQuery}`);
     }
   };
 
@@ -93,6 +97,8 @@ const HeroSection = () => {
                 type="text" 
                 placeholder={activeTab === 'work' ? "Search for semiconductor jobs..." : "Search for VLSI skills..."}
                 className="pl-10 pr-20 py-6 rounded-l-md rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             </div>
@@ -106,7 +112,7 @@ const HeroSection = () => {
             {['ASIC Design', 'RTL Design', 'Verification', 'Physical Design', 'SoC Architecture'].map((item, index) => (
               <a 
                 key={index}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                href={`/jobs?q=${item.toLowerCase().replace(' ', '+')}`}
                 className="inline-block mr-3 hover:text-primary transition-colors"
               >
                 {item}
