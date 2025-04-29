@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import JobListingsSection from '@/components/JobListingsSection';
 import PostJobForm from '@/components/PostJobForm';
 import { jobListings } from '@/data/mockData';
-import { Search, MapPin, Briefcase, Filter, SlidersHorizontal, Bookmark, Bell, Buildings, GraduationCap, CalendarClock } from 'lucide-react';
+import { Search, MapPin, Briefcase, Filter, SlidersHorizontal, Bookmark, Bell, Building, GraduationCap, CalendarClock } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { toast } from "@/hooks/use-toast";
 import { 
@@ -213,7 +212,7 @@ const Jobs = () => {
               <div className="lg:w-1/4">
                 <div className="bg-white rounded-lg shadow-md p-5 mb-6">
                   <h3 className="font-semibold text-lg mb-4 flex items-center">
-                    <Buildings className="mr-2 h-5 w-5 text-primary" />
+                    <Building className="mr-2 h-5 w-5 text-primary" />
                     Job Seeking Guidance
                   </h3>
                   <ul className="space-y-2">
