@@ -23,9 +23,10 @@ type Job = {
 
 interface JobListingsSectionProps {
   jobs: Job[];
+  visibleSections?: Record<string, boolean>;
 }
 
-const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs }) => {
+const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, visibleSections }) => {
   const [savedJobs, setSavedJobs] = useState<string[]>([]);
 
   const toggleSaveJob = (jobId: string) => {
