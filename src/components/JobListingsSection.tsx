@@ -22,12 +22,16 @@ type Job = {
 };
 
 interface JobListingsSectionProps {
-  jobs: Job[];
+  jobs?: Job[];
+  jobListings?: Job[];
   visibleSections?: Record<string, boolean>;
 }
 
-const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, visibleSections }) => {
+const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListings, visibleSections }) => {
   const [savedJobs, setSavedJobs] = useState<string[]>([]);
+  
+  // Use either jobs or jobListings prop, whichever is provided
+  const displayJobs = jobs || jobListings || [];
 
   const toggleSaveJob = (jobId: string) => {
     if (savedJobs.includes(jobId)) {
@@ -40,7 +44,7 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, visibleSe
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold">Job Listings</h2>
-      {jobs.length === 0 ? (
+      {displayJobs.length === 0 ? (
         <div className="text-center p-10 bg-white rounded-lg shadow-sm">
           <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-3" />
           <h3 className="text-lg font-medium mb-1">No jobs found</h3>
@@ -48,7 +52,7 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, visibleSe
         </div>
       ) : (
         <div className="space-y-4">
-          {jobs.map((job) => (
+          {displayJobs.map((job) => (
             <Card key={job.id} className="hover:shadow-md transition-all">
               <CardContent className="p-0">
                 <div className="p-6 flex flex-col md:flex-row gap-4">
@@ -125,7 +129,7 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, visibleSe
         </div>
       )}
       
-      {jobs.length > 0 && (
+      {displayJobs.length > 0 && (
         <div className="flex justify-center mt-8">
           <Button variant="outline" className="mx-1">Previous</Button>
           <Button variant="outline" className="mx-1 bg-primary text-white">1</Button>
