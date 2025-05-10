@@ -401,7 +401,7 @@ const CourseAssignments: React.FC<CourseAssignmentsProps> = ({ courseId }) => {
                 ? 'Complete all assignments to earn your course certificate.' 
                 : selectedTab === 'quizzes'
                 ? 'Quizzes help reinforce your learning. Take them multiple times to master the material.'
-                : 'Practice exercises help you apply what you've learned without affecting your grade.'}
+                : 'Practice exercises help you apply what you\'ve learned without affecting your grade.'}
             </p>
           </div>
         </div>
