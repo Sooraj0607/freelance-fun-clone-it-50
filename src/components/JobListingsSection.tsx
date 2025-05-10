@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { BookOpen, Building, MapPin, Clock, DollarSign, Star } from 'lucide-react';
+import { Job as MockDataJob } from '@/data/mockData';
 
 // Define the Job type
 type Job = {
@@ -23,7 +24,7 @@ type Job = {
 
 interface JobListingsSectionProps {
   jobs?: Job[];
-  jobListings?: Job[];
+  jobListings?: MockDataJob[];
   visibleSections?: Record<string, boolean>;
 }
 
@@ -31,7 +32,20 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
   const [savedJobs, setSavedJobs] = useState<string[]>([]);
   
   // Use either jobs or jobListings prop, whichever is provided
-  const displayJobs = jobs || jobListings || [];
+  // Convert mockDataJob format to Job format if needed
+  const displayJobs = jobs || (jobListings?.map(job => ({
+    id: job.id,
+    title: job.title,
+    companyName: job.postedBy || "Company",
+    location: "Remote",
+    salaryRange: job.budget || "$0",
+    jobType: job.category || "Full-time",
+    remote: true,
+    experience: "Not specified",
+    tags: job.skills || [],
+    postedDate: job.postedDate,
+    logo: undefined
+  })) || []);
 
   const toggleSaveJob = (jobId: string) => {
     if (savedJobs.includes(jobId)) {
@@ -58,8 +72,11 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                 <div className="p-6 flex flex-col md:flex-row gap-4">
                   <div className="md:w-1/6 flex justify-center items-center">
                     <Avatar className="h-16 w-16">
+                      {job.logo && <AvatarImage src={job.logo} alt={job.companyName} />}
                       <AvatarFallback className="bg-primary/10 text-primary">
-                        {job.companyName.substring(0, 2).toUpperCase()}
+                        {job.companyName && job.companyName.length > 0 
+                          ? job.companyName.substring(0, 2).toUpperCase() 
+                          : "CO"}
                       </AvatarFallback>
                     </Avatar>
                   </div>
