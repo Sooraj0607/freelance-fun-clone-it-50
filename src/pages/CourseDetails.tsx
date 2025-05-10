@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,12 +7,18 @@ import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { coursesData } from '@/data/coursesData';
-import { BookOpen, Users, Clock, Award, Star, Play, BarChart, FileText, Download } from 'lucide-react';
+import { BookOpen, Users, Clock, Award, Star, Play, BarChart, FileText, Download, MessageSquare, ThumbsUp } from 'lucide-react';
+import CourseResources from '@/components/courses/CourseResources';
+import CourseDiscussions from '@/components/courses/CourseDiscussions';
+import CourseNotes from '@/components/courses/CourseNotes';
+import CourseAssignments from '@/components/courses/CourseAssignments';
+import { useToast } from "@/components/ui/use-toast";
 
 const CourseDetails = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
+  const { toast } = useToast();
   
   const course = coursesData.find(c => c.id === courseId);
   
@@ -32,6 +37,22 @@ const CourseDetails = () => {
       </div>
     );
   }
+  
+  const handleEnrollment = () => {
+    toast({
+      title: "Successfully Enrolled!",
+      description: `You've been enrolled in ${course.title}. Start learning now!`,
+      variant: "default",
+    });
+  };
+  
+  const handleDownloadCertificate = () => {
+    toast({
+      title: "Certificate Download",
+      description: "Your certificate will be available after course completion.",
+      variant: "default",
+    });
+  };
   
   // Mock data for the course details
   const courseDetails = {
@@ -125,6 +146,17 @@ const CourseDetails = () => {
               
               <p className="text-sm">Created by <span className="font-medium">{course.instructor}</span></p>
               <p className="text-sm">Last updated: {course.lastUpdated || "April 2025"}</p>
+              
+              <div className="mt-4 flex items-center">
+                <div className="bg-yellow-400/20 text-yellow-300 px-3 py-1 rounded-full text-xs font-medium inline-flex items-center mr-4">
+                  <Star className="h-3 w-3 mr-1" fill="currentColor" />
+                  Bestseller
+                </div>
+                <div className="bg-blue-400/20 text-blue-300 px-3 py-1 rounded-full text-xs font-medium inline-flex items-center">
+                  <Users className="h-3 w-3 mr-1" />
+                  High Demand Skill
+                </div>
+              </div>
             </div>
             
             <div className="lg:col-span-1">
@@ -153,7 +185,7 @@ const CourseDetails = () => {
                     </div>
                   </div>
                   
-                  <Button className="w-full mb-3">
+                  <Button className="w-full mb-3" onClick={handleEnrollment}>
                     {course.isFree ? "Enroll Now" : "Buy Now"}
                   </Button>
                   
@@ -176,6 +208,10 @@ const CourseDetails = () => {
                       <span>25 downloadable resources</span>
                     </div>
                     <div className="flex items-start">
+                      <MessageSquare className="h-4 w-4 mt-0.5 mr-3 text-gray-500" />
+                      <span>Active Q&A community access</span>
+                    </div>
+                    <div className="flex items-start">
                       <Clock className="h-4 w-4 mt-0.5 mr-3 text-gray-500" />
                       <span>Full lifetime access</span>
                     </div>
@@ -183,6 +219,12 @@ const CourseDetails = () => {
                       <Award className="h-4 w-4 mt-0.5 mr-3 text-gray-500" />
                       <span>Certificate of completion</span>
                     </div>
+                  </div>
+                  
+                  <div className="mt-6 pt-6 border-t">
+                    <Button variant="outline" className="w-full flex items-center justify-center" onClick={handleDownloadCertificate}>
+                      <Award className="h-4 w-4 mr-2" /> Get Certificate
+                    </Button>
                   </div>
                 </div>
               </Card>
@@ -197,13 +239,18 @@ const CourseDetails = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <Tabs defaultValue="overview" className="w-full" onValueChange={setActiveTab}>
-                <TabsList className="w-full mb-8">
+                <TabsList className="w-full mb-8 overflow-x-auto flex">
                   <TabsTrigger value="overview" className="flex-1">Overview</TabsTrigger>
                   <TabsTrigger value="curriculum" className="flex-1">Curriculum</TabsTrigger>
+                  <TabsTrigger value="resources" className="flex-1">Resources</TabsTrigger>
+                  <TabsTrigger value="discussions" className="flex-1">Discussions</TabsTrigger>
+                  <TabsTrigger value="notes" className="flex-1">My Notes</TabsTrigger>
+                  <TabsTrigger value="assignments" className="flex-1">Assignments</TabsTrigger>
                   <TabsTrigger value="instructor" className="flex-1">Instructor</TabsTrigger>
                   <TabsTrigger value="reviews" className="flex-1">Reviews</TabsTrigger>
                 </TabsList>
                 
+                {/* Overview Tab */}
                 <TabsContent value="overview">
                   <div className="space-y-8">
                     <div>
@@ -231,9 +278,32 @@ const CourseDetails = () => {
                         ))}
                       </ul>
                     </div>
+                    
+                    <div>
+                      <h2 className="text-2xl font-bold mb-4">This Course is Perfect For</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="p-4 border rounded-lg">
+                          <h3 className="font-semibold mb-2">Beginners who want to:</h3>
+                          <ul className="list-disc pl-5 space-y-1">
+                            <li>Understand semiconductor fundamentals</li>
+                            <li>Learn design methodologies</li>
+                            <li>Build a solid foundation in IC design</li>
+                          </ul>
+                        </div>
+                        <div className="p-4 border rounded-lg">
+                          <h3 className="font-semibold mb-2">Experienced Engineers seeking:</h3>
+                          <ul className="list-disc pl-5 space-y-1">
+                            <li>Knowledge refresh on modern design techniques</li>
+                            <li>Specialized advanced skills</li>
+                            <li>Industry certification</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </TabsContent>
                 
+                {/* Curriculum Tab */}
                 <TabsContent value="curriculum">
                   <div>
                     <div className="flex justify-between items-center mb-6">
@@ -276,8 +346,25 @@ const CourseDetails = () => {
                                       <FileText className="h-4 w-4 mr-3" />
                                     )}
                                     <span>{lesson.title}</span>
+                                    
+                                    {lesson.type === 'quiz' && (
+                                      <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">
+                                        Quiz
+                                      </span>
+                                    )}
+                                    {lesson.type === 'exercise' && (
+                                      <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
+                                        Exercise
+                                      </span>
+                                    )}
                                   </div>
-                                  {lesson.duration && <span className="text-sm text-gray-500">{lesson.duration}</span>}
+                                  
+                                  <div className="flex items-center">
+                                    {lesson.duration && <span className="text-sm text-gray-500 mr-3">{lesson.duration}</span>}
+                                    <Button size="sm" variant="ghost">
+                                      <Play className="h-4 w-4" />
+                                    </Button>
+                                  </div>
                                 </div>
                               ))}
                             </div>
@@ -288,6 +375,27 @@ const CourseDetails = () => {
                   </div>
                 </TabsContent>
                 
+                {/* Resources Tab */}
+                <TabsContent value="resources">
+                  <CourseResources courseId={courseId} />
+                </TabsContent>
+                
+                {/* Discussions Tab */}
+                <TabsContent value="discussions">
+                  <CourseDiscussions courseId={courseId} />
+                </TabsContent>
+                
+                {/* Notes Tab */}
+                <TabsContent value="notes">
+                  <CourseNotes courseId={courseId} />
+                </TabsContent>
+                
+                {/* Assignments Tab */}
+                <TabsContent value="assignments">
+                  <CourseAssignments courseId={courseId} />
+                </TabsContent>
+                
+                {/* Instructor Tab */}
                 <TabsContent value="instructor">
                   <div className="space-y-8">
                     <div>
@@ -316,12 +424,20 @@ const CourseDetails = () => {
                             </div>
                           </div>
                           <p className="text-gray-700">{courseDetails.instructor.bio}</p>
+                          
+                          <div className="mt-4 flex">
+                            <Button variant="outline" size="sm" className="flex items-center">
+                              <MessageSquare className="h-4 w-4 mr-2" />
+                              Contact Instructor
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </TabsContent>
                 
+                {/* Reviews Tab */}
                 <TabsContent value="reviews">
                   <div className="space-y-8">
                     <div>
@@ -361,13 +477,46 @@ const CourseDetails = () => {
                               </div>
                             ))}
                           </div>
+                          
+                          <div className="mt-6">
+                            <Button className="flex items-center">
+                              <ThumbsUp className="h-4 w-4 mr-2" /> Leave a Review
+                            </Button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    
-                    <div className="text-center py-8">
-                      <p className="text-gray-500 mb-4">Reviews are only visible to enrolled students</p>
-                      <Button>Enroll to See Reviews</Button>
+                      
+                      <div className="mt-8 space-y-4">
+                        <h3 className="font-semibold text-lg">Top Reviews</h3>
+                        {[1, 2, 3].map((i) => (
+                          <div key={i} className="border rounded-lg p-4 bg-white">
+                            <div className="flex items-start justify-between">
+                              <div className="flex items-start">
+                                <div className="h-10 w-10 rounded-full bg-gray-200 mr-3 flex items-center justify-center text-gray-500">
+                                  <Users className="h-5 w-5" />
+                                </div>
+                                <div>
+                                  <div className="font-medium">Student {i}</div>
+                                  <div className="flex text-yellow-400 mt-1">
+                                    {[...Array(5)].map((_, j) => (
+                                      <Star key={j} className="h-4 w-4" fill={j < 5 ? "currentColor" : "none"} />
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="text-sm text-gray-500">2 weeks ago</div>
+                            </div>
+                            <div className="mt-3">
+                              <p>This course exceeded my expectations. The content is well-structured and the instructor explains complex concepts in a clear, easy-to-understand way.</p>
+                            </div>
+                            <div className="mt-3 flex items-center">
+                              <Button variant="ghost" size="sm" className="text-gray-500">
+                                <ThumbsUp className="h-4 w-4 mr-1" /> Helpful (12)
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </TabsContent>

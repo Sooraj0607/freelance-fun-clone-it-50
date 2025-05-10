@@ -14,6 +14,8 @@ import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 import Career from "./pages/Career";
 import Jobs from "./pages/Jobs";
+import CourseDashboard from "./components/courses/CourseDashboard";
+import CourseCreator from "./components/courses/CourseCreator";
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -42,6 +44,8 @@ const App = () => (
             <Route path="/community" element={<Community />} />
             <Route path="/career" element={<Career />} />
             <Route path="/jobs" element={<Jobs />} />
+            <Route path="/learning-dashboard" element={<CourseDashboard />} />
+            <Route path="/course-creator" element={<CourseCreator />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
