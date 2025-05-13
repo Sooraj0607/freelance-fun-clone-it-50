@@ -41,6 +41,12 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
     }
   };
 
+  // Function to safely get company initials
+  const getCompanyInitials = (companyName: string | undefined): string => {
+    if (!companyName) return 'CO'; // Default initials if company name is undefined
+    return companyName.substring(0, 2).toUpperCase();
+  };
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold">Job Listings</h2>
@@ -59,7 +65,7 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                   <div className="md:w-1/6 flex justify-center items-center">
                     <Avatar className="h-16 w-16">
                       <AvatarFallback className="bg-primary/10 text-primary">
-                        {job.companyName.substring(0, 2).toUpperCase()}
+                        {getCompanyInitials(job.companyName)}
                       </AvatarFallback>
                     </Avatar>
                   </div>
@@ -67,15 +73,15 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                     <h3 className="font-semibold text-lg mb-1">{job.title}</h3>
                     <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
                       <Building className="h-4 w-4" />
-                      <span>{job.companyName}</span>
+                      <span>{job.companyName || 'Unknown Company'}</span>
                       <span>•</span>
                       <MapPin className="h-4 w-4" />
-                      <span>{job.location}</span>
+                      <span>{job.location || 'Remote'}</span>
                     </div>
                     
                     <div className="flex flex-wrap gap-2 mb-3">
                       <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-100">
-                        {job.jobType}
+                        {job.jobType || 'Full-time'}
                       </Badge>
                       {job.remote && (
                         <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-100">
@@ -83,14 +89,14 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                         </Badge>
                       )}
                       <Badge variant="outline" className="bg-gray-50 text-gray-700 hover:bg-gray-100">
-                        {job.experience}
+                        {job.experience || 'Any Level'}
                       </Badge>
-                      {job.tags.slice(0, 2).map((tag, index) => (
+                      {job.tags && job.tags.slice(0, 2).map((tag, index) => (
                         <Badge key={index} variant="outline" className="bg-violet-50 text-violet-700 hover:bg-violet-100">
                           {tag}
                         </Badge>
                       ))}
-                      {job.tags.length > 2 && (
+                      {job.tags && job.tags.length > 2 && (
                         <Badge variant="outline" className="bg-gray-50 text-gray-700 hover:bg-gray-100">
                           +{job.tags.length - 2}
                         </Badge>
@@ -100,11 +106,11 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                     <div className="flex items-center gap-4 text-sm text-gray-600">
                       <div className="flex items-center">
                         <DollarSign className="h-4 w-4 mr-1" />
-                        <span>{job.salaryRange}</span>
+                        <span>{job.salaryRange || 'Competitive'}</span>
                       </div>
                       <div className="flex items-center">
                         <Clock className="h-4 w-4 mr-1" />
-                        <span>{job.postedDate}</span>
+                        <span>{job.postedDate || 'Recent'}</span>
                       </div>
                     </div>
                   </div>
