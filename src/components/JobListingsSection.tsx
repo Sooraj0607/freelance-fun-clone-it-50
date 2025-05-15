@@ -5,21 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { BookOpen, Building, MapPin, Clock, DollarSign, Star } from 'lucide-react';
-
-// Define the Job type
-type Job = {
-  id: string;
-  title: string;
-  companyName: string;
-  location: string;
-  salaryRange: string;
-  jobType: string;
-  remote: boolean;
-  experience: string;
-  tags: string[];
-  postedDate: string;
-  logo?: string;
-};
+import { Job } from '@/data/mockData';
 
 interface JobListingsSectionProps {
   jobs?: Job[];
@@ -47,6 +33,12 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
     return companyName.substring(0, 2).toUpperCase();
   };
 
+  // Function to get the first two characters of a string or a default value
+  const getFirstTwoChars = (text: string | undefined, defaultValue: string = 'CO'): string => {
+    if (!text) return defaultValue;
+    return text.substring(0, 2).toUpperCase();
+  };
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold">Job Listings</h2>
@@ -65,7 +57,7 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                   <div className="md:w-1/6 flex justify-center items-center">
                     <Avatar className="h-16 w-16">
                       <AvatarFallback className="bg-primary/10 text-primary">
-                        {getCompanyInitials(job.companyName)}
+                        {getFirstTwoChars(job.postedBy)}
                       </AvatarFallback>
                     </Avatar>
                   </div>
@@ -73,32 +65,30 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                     <h3 className="font-semibold text-lg mb-1">{job.title}</h3>
                     <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
                       <Building className="h-4 w-4" />
-                      <span>{job.companyName || 'Unknown Company'}</span>
+                      <span>{job.postedBy || 'Unknown Company'}</span>
                       <span>•</span>
                       <MapPin className="h-4 w-4" />
-                      <span>{job.location || 'Remote'}</span>
+                      <span>{'Remote'}</span>
                     </div>
                     
                     <div className="flex flex-wrap gap-2 mb-3">
                       <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-100">
-                        {job.jobType || 'Full-time'}
+                        {'Full-time'}
                       </Badge>
-                      {job.remote && (
-                        <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-100">
-                          Remote
-                        </Badge>
-                      )}
+                      <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-100">
+                        {job.category}
+                      </Badge>
                       <Badge variant="outline" className="bg-gray-50 text-gray-700 hover:bg-gray-100">
-                        {job.experience || 'Any Level'}
+                        {'Any Level'}
                       </Badge>
-                      {job.tags && job.tags.slice(0, 2).map((tag, index) => (
+                      {job.skills && job.skills.slice(0, 2).map((skill, index) => (
                         <Badge key={index} variant="outline" className="bg-violet-50 text-violet-700 hover:bg-violet-100">
-                          {tag}
+                          {skill}
                         </Badge>
                       ))}
-                      {job.tags && job.tags.length > 2 && (
+                      {job.skills && job.skills.length > 2 && (
                         <Badge variant="outline" className="bg-gray-50 text-gray-700 hover:bg-gray-100">
-                          +{job.tags.length - 2}
+                          +{job.skills.length - 2}
                         </Badge>
                       )}
                     </div>
@@ -106,7 +96,7 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                     <div className="flex items-center gap-4 text-sm text-gray-600">
                       <div className="flex items-center">
                         <DollarSign className="h-4 w-4 mr-1" />
-                        <span>{job.salaryRange || 'Competitive'}</span>
+                        <span>{job.budget || 'Competitive'}</span>
                       </div>
                       <div className="flex items-center">
                         <Clock className="h-4 w-4 mr-1" />
