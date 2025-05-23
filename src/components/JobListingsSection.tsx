@@ -41,11 +41,11 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold">Job Listings</h2>
+      <h2 className="text-2xl font-bold">VLSI & Semiconductor Jobs</h2>
       {displayJobs.length === 0 ? (
         <div className="text-center p-10 bg-white rounded-lg shadow-sm">
           <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-          <h3 className="text-lg font-medium mb-1">No jobs found</h3>
+          <h3 className="text-lg font-medium mb-1">No semiconductor jobs found</h3>
           <p className="text-gray-500">Try adjusting your filters or search criteria</p>
         </div>
       ) : (

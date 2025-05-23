@@ -24,7 +24,7 @@ const FreelancerCard: React.FC<FreelancerCardProps> = ({ freelancer }) => {
               <h3 className="font-semibold">{freelancer.name}</h3>
               {freelancer.rating > 4.7 && (
                 <span className="ml-2 bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full flex items-center">
-                  <CheckCircle className="h-3 w-3 mr-1" /> Top Rated
+                  <CheckCircle className="h-3 w-3 mr-1" /> IC Expert
                 </span>
               )}
             </div>
@@ -36,7 +36,7 @@ const FreelancerCard: React.FC<FreelancerCardProps> = ({ freelancer }) => {
           <div className="flex items-center mr-4">
             <Star className="h-4 w-4 text-yellow-500 mr-1 fill-yellow-500" />
             <span className="font-medium">{freelancer.rating}</span>
-            <span className="text-muted-foreground text-sm ml-1">({freelancer.completedJobs} jobs)</span>
+            <span className="text-muted-foreground text-sm ml-1">({freelancer.completedJobs} projects)</span>
           </div>
           <div className="font-medium">{freelancer.hourlyRate}/hr</div>
         </div>
