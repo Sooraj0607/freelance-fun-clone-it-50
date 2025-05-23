@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { BookOpen, Building, MapPin, Clock, DollarSign, Star } from 'lucide-react';
+import { BookOpen, Building, MapPin, Clock, DollarSign, Star, Cpu } from 'lucide-react';
 import { Job } from '@/data/mockData';
 
 interface JobListingsSectionProps {
@@ -29,23 +29,32 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
 
   // Function to safely get company initials
   const getCompanyInitials = (companyName: string | undefined): string => {
-    if (!companyName) return 'CO'; // Default initials if company name is undefined
+    if (!companyName) return 'SC'; // Default initials for semiconductor company
     return companyName.substring(0, 2).toUpperCase();
   };
 
   // Function to get the first two characters of a string or a default value
-  const getFirstTwoChars = (text: string | undefined, defaultValue: string = 'CO'): string => {
+  const getFirstTwoChars = (text: string | undefined, defaultValue: string = 'SC'): string => {
     if (!text) return defaultValue;
     return text.substring(0, 2).toUpperCase();
   };
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold">VLSI & Semiconductor Jobs</h2>
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <h2 className="text-2xl font-bold">Explore Freelance Projects in VLSI & Semiconductor Design</h2>
+      </div>
+      
+      <p className="text-gray-600 mb-8">
+        Connect with leading semiconductor companies and professionals for specialized VLSI design, 
+        verification, and FPGA projects. Our platform matches top semiconductor talent 
+        with challenging projects that require specialized expertise.
+      </p>
+      
       {displayJobs.length === 0 ? (
         <div className="text-center p-10 bg-white rounded-lg shadow-sm">
-          <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-          <h3 className="text-lg font-medium mb-1">No semiconductor jobs found</h3>
+          <Cpu className="h-12 w-12 text-gray-300 mx-auto mb-3" />
+          <h3 className="text-lg font-medium mb-1">No semiconductor projects found</h3>
           <p className="text-gray-500">Try adjusting your filters or search criteria</p>
         </div>
       ) : (
@@ -73,25 +82,24 @@ const JobListingsSection: React.FC<JobListingsSectionProps> = ({ jobs, jobListin
                     
                     <div className="flex flex-wrap gap-2 mb-3">
                       <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-100">
-                        {'Full-time'}
+                        {'Freelance'}
                       </Badge>
                       <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-100">
                         {job.category}
                       </Badge>
-                      <Badge variant="outline" className="bg-gray-50 text-gray-700 hover:bg-gray-100">
-                        {'Any Level'}
-                      </Badge>
-                      {job.skills && job.skills.slice(0, 2).map((skill, index) => (
+                      {job.skills && job.skills.slice(0, 3).map((skill, index) => (
                         <Badge key={index} variant="outline" className="bg-violet-50 text-violet-700 hover:bg-violet-100">
                           {skill}
                         </Badge>
                       ))}
-                      {job.skills && job.skills.length > 2 && (
+                      {job.skills && job.skills.length > 3 && (
                         <Badge variant="outline" className="bg-gray-50 text-gray-700 hover:bg-gray-100">
-                          +{job.skills.length - 2}
+                          +{job.skills.length - 3}
                         </Badge>
                       )}
                     </div>
+                    
+                    <p className="text-gray-600 text-sm mb-3 line-clamp-2">{job.description}</p>
                     
                     <div className="flex items-center gap-4 text-sm text-gray-600">
                       <div className="flex items-center">

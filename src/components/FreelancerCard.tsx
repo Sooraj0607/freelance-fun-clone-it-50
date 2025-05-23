@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Star, CheckCircle } from 'lucide-react';
+import { Star, CheckCircle, Cpu } from 'lucide-react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -24,7 +24,7 @@ const FreelancerCard: React.FC<FreelancerCardProps> = ({ freelancer }) => {
               <h3 className="font-semibold">{freelancer.name}</h3>
               {freelancer.rating > 4.7 && (
                 <span className="ml-2 bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full flex items-center">
-                  <CheckCircle className="h-3 w-3 mr-1" /> IC Expert
+                  <Cpu className="h-3 w-3 mr-1" /> IC Expert
                 </span>
               )}
             </div>
@@ -49,6 +49,11 @@ const FreelancerCard: React.FC<FreelancerCardProps> = ({ freelancer }) => {
             <span className="badge">+{freelancer.skills.length - 3} more</span>
           )}
         </div>
+
+        <p className="text-xs text-gray-500 mb-3">
+          <CheckCircle className="h-3 w-3 inline mr-1 text-green-500" />
+          Verified Semiconductor Expert
+        </p>
       </CardContent>
 
       <CardFooter className="border-t pt-4">

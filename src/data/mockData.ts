@@ -1,3 +1,4 @@
+
 // Mock data for the freelancing platform
 
 export interface Job {
@@ -43,75 +44,75 @@ export interface ProjectType {
 // Let's add course categories to jobCategories
 export const jobCategories = [
   'All Categories', 
-  'Web Development', 
-  'Design', 
-  'Marketing', 
-  'Data Science', 
-  'Mobile Development',
-  'Writing & Translation',
-  'Video & Animation',
-  'Security'
+  'VLSI Design', 
+  'RTL Design', 
+  'Verification', 
+  'FPGA', 
+  'Mixed-Signal',
+  'Layout Design',
+  'Physical Design',
+  'DFT'
 ];
 
 export const jobListings: Job[] = [
   {
     id: "1",
-    title: "WordPress Website Development",
-    description: "Need an experienced WordPress developer to build a responsive e-commerce website with WooCommerce integration.",
-    budget: "$500 - $1,000",
-    category: "Web Development",
-    skills: ["WordPress", "WooCommerce", "PHP", "JavaScript"],
-    postedBy: "TechStartup Inc.",
+    title: "Analog VLSI Design Engineer",
+    description: "We're looking for an experienced Analog VLSI Design Engineer to work on schematic design, simulation, and layout of analog circuits including ADCs, DACs, and PLLs for our next-generation semiconductor product.",
+    budget: "$80 - $120/hr",
+    category: "VLSI Design",
+    skills: ["Cadence Virtuoso", "Analog Design", "PLL Design", "SPICE Simulation", "Layout"],
+    postedBy: "ChipDesign Solutions",
     postedDate: "2 days ago"
   },
   {
     id: "2",
-    title: "Mobile App UI/UX Designer",
-    description: "Looking for a talented UI/UX designer to create modern, intuitive interfaces for our iOS and Android application.",
-    budget: "$1,000 - $2,500",
-    category: "Design",
-    skills: ["UI/UX", "Figma", "Mobile Design", "Prototyping"],
-    postedBy: "MobileVision Labs",
+    title: "Digital RTL Design Specialist",
+    description: "Seeking an experienced RTL design specialist to develop and optimize digital modules using SystemVerilog. The project involves implementing complex algorithms for a high-performance computing ASIC.",
+    budget: "$70 - $100/hr",
+    category: "RTL Design",
+    skills: ["SystemVerilog", "RTL Design", "Logic Synthesis", "Timing Analysis", "Design Compiler"],
+    postedBy: "ProcessorTech Inc.",
     postedDate: "5 hours ago"
   },
   {
     id: "3",
-    title: "Content Writer for Technology Blog",
-    description: "Seeking a content writer with knowledge in technology trends to write engaging blog posts on AI, blockchain, and cloud computing.",
-    budget: "$30 - $50 per article",
-    category: "Writing",
-    skills: ["Content Writing", "SEO", "Tech Knowledge", "Blogging"],
-    postedBy: "TechTrends Media",
+    title: "SystemVerilog/UVM Verification Engineer",
+    description: "Looking for a verification expert to develop UVM testbenches for our next-generation communication IP. Experience with advanced verification methodologies and coverage-driven verification is required.",
+    budget: "$75 - $95/hr",
+    category: "Verification",
+    skills: ["SystemVerilog", "UVM", "Functional Coverage", "Assertions", "Synopsys VCS"],
+    postedBy: "VerifyChip Technologies",
     postedDate: "1 week ago"
   },
   {
     id: "4",
-    title: "React Native Developer",
-    description: "Need a React Native developer to build a cross-platform mobile application with Firebase integration.",
-    budget: "$2,000 - $4,000",
-    category: "Mobile Development",
-    skills: ["React Native", "Firebase", "JavaScript", "Mobile Development"],
-    postedBy: "StartupBoost",
+    title: "FPGA Design & Prototyping Specialist",
+    description: "Need an FPGA designer to implement and optimize a high-speed signal processing algorithm on Xilinx Ultrascale+ platform. Experience with HLS and timing closure is essential.",
+    budget: "$60 - $90/hr",
+    category: "FPGA",
+    skills: ["FPGA", "Verilog", "Xilinx Vivado", "HLS", "Timing Closure"],
+    postedBy: "SignalTech Systems",
     postedDate: "3 days ago"
   },
   {
     id: "5",
-    title: "Social Media Marketing Specialist",
-    description: "Looking for a social media expert to manage our company profiles and create engaging content to increase brand awareness.",
-    budget: "$25 - $35 per hour",
-    category: "Marketing",
-    skills: ["Social Media", "Content Creation", "Analytics", "Campaign Management"],
-    postedBy: "GrowthGurus",
+    title: "Mixed-Signal Design Consultant",
+    description: "Seeking an experienced consultant for analog/digital integration, co-simulation, and verification of our mixed-signal SoC. Experience with power management circuits is a plus.",
+    budget: "$90 - $130/hr",
+    category: "Mixed-Signal",
+    skills: ["Mixed-Signal Design", "Analog/Digital Integration", "Co-Simulation", "AMS Verification", "Tapeout Experience"],
+    postedBy: "MixedChip Solutions",
     postedDate: "Just now"
   },
   {
     id: "6",
-    title: "Video Editor for YouTube Channel",
-    description: "Seeking a skilled video editor to edit weekly content for our growing YouTube channel. Experience with Adobe Premiere Pro required.",
-    budget: "$40 - $60 per video",
-    category: "Video & Animation",
-    skills: ["Video Editing", "Adobe Premiere", "After Effects", "Color Grading"],
-    postedBy: "ContentCreators",
+    title: "VLSI Design Trainer/Content Creator",
+    description: "Looking for an experienced VLSI professional to create high-quality educational content including tutorials, courses, and training materials on Verilog, SystemVerilog, and industry-standard VLSI design flows.",
+    budget: "$50 - $80/hr",
+    category: "Training",
+    skills: ["VLSI Design", "Educational Content", "Tutorial Creation", "Course Development", "Technical Writing"],
+    postedBy: "ChipEducate",
     postedDate: "4 days ago"
   }
 ];
@@ -120,40 +121,40 @@ export const topFreelancers: Freelancer[] = [
   {
     id: "1",
     name: "Sarah Johnson",
-    title: "Full Stack Developer",
+    title: "Analog IC Design Expert",
     rating: 4.9,
-    hourlyRate: "$60",
-    skills: ["React", "Node.js", "MongoDB", "TypeScript"],
+    hourlyRate: "$110",
+    skills: ["Analog Design", "Cadence Virtuoso", "SPICE", "Layout", "Tapeout"],
     completedJobs: 57,
     avatar: "https://i.pravatar.cc/150?img=1"
   },
   {
     id: "2",
     name: "Michael Chen",
-    title: "UI/UX Designer",
+    title: "RTL Design Specialist",
     rating: 4.8,
-    hourlyRate: "$55",
-    skills: ["Figma", "Adobe XD", "UI Design", "Prototyping"],
+    hourlyRate: "$95",
+    skills: ["SystemVerilog", "ASIC Design", "RTL Optimization", "Logic Synthesis"],
     completedJobs: 43,
     avatar: "https://i.pravatar.cc/150?img=8"
   },
   {
     id: "3",
     name: "Jessica Miller",
-    title: "Content Strategist",
+    title: "UVM Verification Engineer",
     rating: 4.7,
-    hourlyRate: "$45",
-    skills: ["Content Writing", "SEO", "Marketing", "Research"],
+    hourlyRate: "$85",
+    skills: ["UVM", "SystemVerilog", "Functional Coverage", "Assertions"],
     completedJobs: 38,
     avatar: "https://i.pravatar.cc/150?img=5"
   },
   {
     id: "4",
     name: "David Thompson",
-    title: "Mobile Developer",
+    title: "FPGA Design Expert",
     rating: 4.9,
-    hourlyRate: "$65",
-    skills: ["Swift", "Kotlin", "Flutter", "React Native"],
+    hourlyRate: "$90",
+    skills: ["FPGA", "Verilog", "Xilinx Vivado", "Intel Quartus", "HLS"],
     completedJobs: 62,
     avatar: "https://i.pravatar.cc/150?img=3"
   }
